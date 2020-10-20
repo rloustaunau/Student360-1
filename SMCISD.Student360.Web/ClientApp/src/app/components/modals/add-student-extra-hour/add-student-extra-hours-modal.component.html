@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Student Make Up Hours</h4>
+  <button type="button" class="close outline-none" (click)="activeModal.close(false)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div class="row">
+    <div class="col-12 col-xs-12 col-md-6 col-lg-6">
+      <div class="form-group">
+        <label>Student ID</label>
+        <input class="form-control" [disabled]="true" [(ngModel)]="studentUniqueId" type="text" />
+      </div>
+    </div>
+    <div class="col-12 col-xs-12 col-md-6 col-lg-6">
+      <div class="form-group">
+        <label>Reason</label>
+        <select class="form-control" [(ngModel)]="studentExtraHour.reasonId">
+          <option *ngFor="let reason of reasons" [value]="reason.reasonId">{{reason.value}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-xs-12 col-md-6 col-lg-6">
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" class="form-control" [(ngModel)]="studentExtraHour.date" />
+      </div>
+    </div>
+    <div class="col-12 col-xs-12 col-md-6 col-lg-6">
+      <div class="form-group">
+        <label>Hours</label>
+        <input type="number" class="form-control" [(ngModel)]="studentExtraHour.hours" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Comments</label>
+        <textarea class="form-control" [(ngModel)]="studentExtraHour.comments" rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+      <button type="button" class="btn btn-primary" (click)="create()">Save</button>
+    </div>
+  </div>
+</div>

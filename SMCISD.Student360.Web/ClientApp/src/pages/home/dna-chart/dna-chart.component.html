@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-2 d-flex align-items-center">No Geo Data: {{noGeoDataStudents}}</div>
+      <div class="col-2 col-xs-2 col-sm-4 col-md-6 col-lg-8"></div>
+      <div class="col-8 col-xs-8 col-sm-6 col-md-4 col-lg-2">
+        <input #searchInput class="form-control text-right" placeholder="Search" [(ngModel)]="searchTerm" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <app-loader [loading]="loading"></app-loader>
+    <div id="map" #map></div>
+  </div>
+</div>

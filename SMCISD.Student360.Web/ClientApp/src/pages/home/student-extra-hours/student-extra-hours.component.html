@@ -1,0 +1,11 @@
+<app-data-grid *ngIf="filters"
+               serviceName="studentExtraHour"
+               methodName="getStudentExtraHourGrid"
+               [filters]="filters"
+               [showImportExport]="true"
+               drilldownComponent="app-student-hour-history"
+               [selectedColumns]="['StudentUniqueId', 'FirstName', 'LastSurname', 'GradeLevel', 'SchoolYear', 'SchoolId', 'StudentUsi', 'LocalEducationAgencyId', 'TotalHours']"
+               [hiddenColumns]="['studentUsi', 'schoolId', 'localEducationAgencyId']"
+               [renameHeaders]="[{index: 0, name: 'Student ID'},{index: 2, name: 'Last Name'},{index: 3, name: 'Grade'}]"
+               [defaultSearch]="studentUniqueId">
+</app-data-grid>

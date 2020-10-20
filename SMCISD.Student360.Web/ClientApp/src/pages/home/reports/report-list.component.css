@@ -1,0 +1,6 @@
+.report-list {
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}

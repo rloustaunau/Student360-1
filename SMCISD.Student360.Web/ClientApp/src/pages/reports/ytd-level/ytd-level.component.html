@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-body">
+    <h3>YTD Attendance - Level</h3>
+    <div [style.height.px]="chart.offsetHeight" class="d-flex w-100 bar-container">
+      <app-loader [loading]="loading"></app-loader>
+      <div class="chart-colors" [style.height.px]="chart.offsetHeight" [style.width.px]="getColorWidth(chart.offsetWidth)">
+        <div class="red-section h-100pc"></div>
+        <div class="yellow-section h-100pc"></div>
+        <div class="green-section h-100pc"></div>
+      </div>
+      <canvas #chart class="bar-chart" baseChart
+              [datasets]="chartData"
+              [labels]="chartLabels"
+              [options]="chartOptions"
+              [colors]="colors"
+              [chartType]="'horizontalBar'">
+      </canvas>
+    </div>
+  </div>
+</div>

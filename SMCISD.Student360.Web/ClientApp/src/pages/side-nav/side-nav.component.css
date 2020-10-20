@@ -1,0 +1,51 @@
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.side-nav-inside a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.link-active div,.link-active div {
+  display: inline-block !important;
+  background-color: #3ac2ff;
+  width: 8px;
+  height: 3vh;
+}
+
+.navbar-brand div, .nav-item div{
+  display: none;
+  position: absolute;
+  left: 2px;
+}
+.nav-item div{
+  left: 20px;
+}
+
+.navbar-brand, .nav-item{
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+
+.report-bug-button{
+  position: absolute !important;
+  bottom: 20px !important;
+}

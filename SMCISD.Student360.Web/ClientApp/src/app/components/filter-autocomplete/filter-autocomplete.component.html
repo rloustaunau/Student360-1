@@ -1,0 +1,7 @@
+<div class="position-relative " data-toggle="tooltip" data-placement="top" [title]="filter.description || filter.placeholder">
+  <app-loader [loading]="loading" [small]="true"></app-loader>
+  <input  class="custom-select my-1 mr-sm-2 w-100px" type="text" list="autofilter" [(ngModel)]="filter.value" (change)="updateFilter()">
+  <datalist  id="autofilter">
+    <option *ngFor="let option of filter.options" [value]="option.id">{{ getFormatValue(option.value)}}</option>
+  </datalist>
+</div>

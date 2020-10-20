@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top top-nav">
+  <span class="beta-title badge danger mr-2"
+    title="Send feedback and function requests to student360.app@smcisd.net">BETA</span>
+  <a class="navbar-brand" [routerLink]="['/']">SMCISD Ed-Fi Student360</a>
+  <div class="d-flex order-md-2 order-lg-2">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse order-lg-1 order-lg-1" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <ng-container *ngIf="showFilters()">
+        <ng-container *ngFor="let filter of filters; let i = index">
+          <li class="nav-item mr-2" *ngIf="filter.type == 'select'">
+            <app-filter [serviceName]="filter.serviceName" [methodName]="filter.methodName"
+                        [defaultValue]="filter.defaultValue" [filter]="filter"
+                        [formatType]="filter.formatType" (valueChanged)="updateFilter($event,i)" [preFilled]="filter.prefilledOptions"></app-filter>
+          </li>
+          <li class="nav-item mr-2" *ngIf="filter.type == 'autocomplete'">
+            <app-filter-autocomplete [serviceName]="filter.serviceName" [methodName]="filter.methodName"
+                        [defaultValue]="filter.defaultValue" [filter]="filter"
+                        [formatType]="filter.formatType" (valueChanged)="updateFilter($event,i)" [preFilled]="filter.prefilledOptions"></app-filter-autocomplete>
+          </li>
+          <li class="nav-item d-flex align-items-center mr-2" *ngIf="filter.type == 'bool'">
+            <app-filter-boolean [filter]="filter" (valueChanged)="updateFilter($event,i)">
+            </app-filter-boolean>
+          </li>
+          <li class="nav-item d-flex align-items-center mr-2" *ngIf="filter.type == 'range' && filter.operator == '>='">
+            <app-filter-range [inputId]="i" [minFilter]="filter" [maxFilter]="filters[i+1]"
+                              [maxValue]="filter.maxValue" [formatType]="filter.formatType"
+                              (valueChanged)="updateFilter($event,i, true)"></app-filter-range>
+          </li>
+        </ng-container>
+      </ng-container>
+      <li *ngIf="showFilters()" class="nav-item d-flex align-items-center mr-2">
+        <button type="button" class="btn-outline-primary btn-rounded d-flex align-items-center justify-content-between" (click)="clearFilters()">
+          Clear filters
+        </button>
+      </li>
+    </ul>
+    <ul class="navbar-nav user-settings">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle " id="dropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Welcome, {{people.firstName + " " + people.lastSurname}} <i
+            class="icon ion-md-person"></i></a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
+          <a class="dropdown-item" (click)="signOut();"><i class="icon ion-md-unlock"></i> Log out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

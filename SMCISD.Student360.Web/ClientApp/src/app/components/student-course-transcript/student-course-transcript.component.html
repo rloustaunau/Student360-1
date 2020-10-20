@@ -1,0 +1,40 @@
+<div class="d-flex align-items-center justify-content-end mb-4">
+  <span class="mr-4"> Total Attempted Credits: {{totalAttemptedCredits}}</span>
+  <span>Total Earned Credits: {{totalEarnedCredits}}</span>
+</div>
+<div class="row position-relative" *ngIf="grid">
+  <app-loader [loading]="loading"></app-loader>
+  <div class="col-12">
+    <div class="position-relative card h-100 mb-0">
+      <div class="card-body">
+        <table class="table student-profile-table">
+          <thead>
+            <tr>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Course Code">Code</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Course">Course</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Final Grade">Final Grade</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Attempted Credits">Attempted Credits </th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Earned Credits">
+                Earned Credits
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of grid.data">
+              <td class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="{{item.courseCode}}">
+                {{item.courseCode}}
+              </td>
+              <td class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="{{item.courseTitle}}">
+                {{item.courseTitle}}
+              </td>
+              <td>{{item.finalNumericGradeEarned }}</td>
+              <td>{{item.attemptedCredits }}</td>
+              <td>{{item.earnedCredits}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

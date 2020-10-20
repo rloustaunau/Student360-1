@@ -1,0 +1,7 @@
+<div class="position-relative" data-toggle="tooltip" data-placement="top" [title]="filter.description || filter.placeholder">
+  <button type="button" [ngClass]="{'filled' : filter ? filter.value : false}"  class="btn-outline-primary btn-rounded d-flex align-items-center justify-content-between" (click)="updateFilter()">
+    {{filter.placeholder}}
+    <i *ngIf="filter.value" class="fa fa-check-circle ml-2"></i>
+    <i *ngIf="!filter.value" class="fa fa-times-circle ml-2"></i>
+  </button>
+</div>

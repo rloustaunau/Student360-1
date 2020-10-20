@@ -1,0 +1,44 @@
+.student-profile-table {
+  overflow-x: hidden;
+  overflow-y: visible;
+  display: table;
+  position: relative;
+  table-layout: fixed;
+  border: 1px solid #eee;
+}
+
+.student-profile-card {
+  font-size: 1rem;
+  color: #678098;
+}
+.student-profile-table thead tr th {
+  position: sticky;
+  top: 0;
+}
+
+.student-profile-table tr th, .student-profile-table tr td {
+  background-color: white;
+  padding: 5px;
+  vertical-align: middle;
+  font-size: 0.8rem;
+}
+
+.student-profile-table thead tr th {
+  font-weight:700;
+}
+
+.student-profile-table tbody tr:nth-child(2n) > td{
+    background-color: #eee;
+}
+
+.student-profile-footer {
+    display:flex;
+}
+
+.student-profile-footer .footer-section {
+  border: 1px solid #dadada;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  white-space: pre-wrap;
+}

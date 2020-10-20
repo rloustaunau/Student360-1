@@ -1,0 +1,11 @@
+<app-data-grid *ngIf="filters && filters.length > 5"
+               serviceName="student"
+               methodName="getStudentHighestAbsenceCourseCount"
+               [filters]="filters"
+               drilldownComponent="app-student-profile"
+               [selectedColumns]="['StudentUniqueId', 'FirstName', 'LastSurname', 'GradeLevel', 'GraduationSchoolYear', 'NameOfInstitution', 'SchoolId', 'StudentUsi', 'HighestCourseCount', 'SchoolYear', 'LocalEducationAgencyId','HasCredits', 'Section504', 'TotalInstructionalDays', 'EntryDate', 'Ell', 'EcoDis', 'Ssi', 'IsHomeless', 'Ar', 'Sped', 'AbsencePercent', 'GPA']"
+               [hiddenColumns]="['studentUsi','highestCourseCount', 'schoolYear', 'schoolId', 'localEducationAgencyId', 'totalInstructionalDays', 'section504', 'hasCredits', 'entryDate','ell', 'ar', 'ssi', 'isHomeless', 'ecoDis', 'sped', 'absencePercent', 'gpa']"
+               [renameHeaders]="[{index: 0, name: 'Student ID'},{index: 2, name: 'Last Name'},{index: 3, name: 'Grade'}, {index: 4, name: 'Grad Year'}, {index: 5, name: 'Campus'}]"
+               [stringShortenOptions]="[{index: 6, option: 'percent'}]"
+               [showImportExport]="true">
+</app-data-grid>

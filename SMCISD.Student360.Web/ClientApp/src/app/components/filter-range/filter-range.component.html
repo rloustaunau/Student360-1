@@ -1,0 +1,15 @@
+<div class="position-relative">
+  <span class="slider-label">{{label}}</span>
+  <div [id]="'slider'+ inputId" class="slider-container">
+    <div [id]="'min'+ inputId" class="range-input min"></div>
+    <div [id]="'max'+ inputId"></div>
+    <div class="slider-line"></div>
+    <div [id]="'color'+ inputId" class="slider-colored-line"></div>
+  </div>
+  <div class="value-container">
+    <span><input type="number" [(ngModel)]="minFilter.value" (ngModelChange)="adjustMinRange()" (keyup.enter)="updateFilter()"></span>
+    <span>to</span>
+    <span>{{maxFilter.value}}</span>
+    <!--<span><input type="number" [(ngModel)]="maxFilter.value" (ngModelChange)="adjustMaxRange()" (keyup.enter)="updateFilter()"></span>-->
+  </div>
+</div>

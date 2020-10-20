@@ -1,0 +1,50 @@
+.pagination-nav{
+  float: right;
+}
+.pagination-meta{
+  margin-top: 5px;
+}
+.page-size{
+  width: 20px;
+}
+.search-box{
+  width: 100px;
+  float: right;
+}
+
+.grid-table-container {
+  height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.grid-no-data {
+  width: 100%;
+  height: 96%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-pagination{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grid-drilldown {
+  background: #eeeeee !important;
+  padding:20px;
+}
+
+
+.selected-page {
+  background-color: #03A9F4;
+  border: 1px solid #03A9F4;
+  color: white !important;
+}
+
+.no-pointer{
+    cursor: default !important;
+}

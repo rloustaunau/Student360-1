@@ -1,0 +1,137 @@
+<div class="row position-relative">
+  <app-loader [loading]="loading"></app-loader>
+  <div class="col-12 col-md-12 col-lg-3">
+    <div class="card student-profile-card h-100 mb-0">
+      <div class="card-header">
+        <div class="text-right">
+          <span *ngIf="object.ar" class="badge danger mr-2">AR</span>
+          <span *ngIf="object.ell" class="badge danger mr-2">ELL</span>
+          <span *ngIf="object.section504" class="badge danger mr-2">504</span>
+          <span *ngIf="object.ecoDis  && userIsAdmin" class="badge danger mr-2">EcoDis</span>
+          <span *ngIf="object.ssi" class="badge danger mr-2">SSI</span>
+          <span *ngIf="object.sped" class="badge danger mr-2">SPED</span>
+          <span *ngIf="object.isHomeless && userIsAdmin" class="badge danger mr-2">Homeless</span>
+        </div>
+      </div>
+      <div class="card-body mt-0 pt-0">
+        <div class="text-center">
+          <div class="img-container mt-3 w-150px h-150px">
+            <img class="img-avatar" [src]="imageUrl" />
+          </div>
+          <h2 class="mt-4 mb-1">{{object.firstName + ' ' + object.lastSurname}}</h2>
+          <h4 class="link-text cursor-pointer" (click)="openStudentModal(object.studentUsi)">Attendance</h4>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12 pt-2 pb-2">
+            <span>
+              <i class="fa fa-sign-in mr-2"></i><span class="f-w-600">Entry Date: </span>
+              {{object.entryDate | date: 'MMM/dd/yyyy'}}
+            </span>
+          </div>
+          <div class="col-12 pt-2 pb-2">
+            <span>
+              <i class="fa fa-calendar mr-2"></i> <span class="f-w-600">GPA: </span>
+              {{object.gpa | number : '1.2-2'}}
+            </span>
+          </div>
+          <div class="col-12 pt-2 pb-2">
+            <span>
+              <i class="fa fa-calendar mr-2"></i> <span class="f-w-600">Instructional Days: </span>
+              {{object.totalInstructionalDays}}
+            </span>
+          </div>
+          <div class="col-12 pt-2 pb-2" (click)="goToStudentExtraHoursCrud()">
+            <span>
+              <i class="fa fa-calendar mr-2"></i> <span class="f-w-600 link-text cursor-pointer">
+                Accrued Make Up
+                Hours:
+              </span>
+              {{studentExtraHours}}
+            </span>
+          </div>
+          <div class="col-12 pt-2 pb-2" (click)="openAttendanceSummaryModal(object.studentUsi)">
+            <span>
+              <i class="fa fa-calendar mr-2"></i> <span class="f-w-600 link-text cursor-pointer">
+              Attendance Summary
+            </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-12 col-lg-9">
+    <div class="position-relative card h-100 mb-0">
+      <div class="card-body">
+        <table class="table student-profile-table">
+          <thead>
+            <tr>
+              <th class="text-ellipsis" width="20%" data-toggle="tooltip" data-placement="right" title="Course">Course
+              </th>
+              <th class="text-ellipsis" width="8%" data-toggle="tooltip" data-placement="right" title="Code">Code</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Credits">Credits</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Period">Period</th>
+              <th class="text-ellipsis" width="7%" *ngIf="isHighSchoolStudent" data-toggle="tooltip"
+                data-placement="right" title="Term">Term</th>
+              <th class="text-ellipsis" width="12%" data-toggle="tooltip" data-placement="right" title="Teacher">Teacher
+              </th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="9wk1">9wk1</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="9wk2">9wk2</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="9wk3">9wk3</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="9wk4">9wk4</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="FS1">FS1</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="FS2">FS2</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="YF">YF</th>
+              <th class="text-ellipsis" *ngIf="isHighSchoolStudent" data-toggle="tooltip" data-placement="right"
+                title="S1Abs">Abs</th>
+              <th *ngIf="!isHighSchoolStudent">YAbs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of grid.data">
+              <td class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="{{item.localCourseTitle}}">
+                {{item.localCourseTitle}}</td>
+              <td class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="{{item.localCourseCode}}">
+                {{item.localCourseCode}}</td>
+              <td>{{item.credits}}</td>
+              <td>{{item.classPeriodName}}</td>
+              <td *ngIf="isHighSchoolStudent">{{item.sessionName | shorten : 'first'}}</td>
+              <td class="text-ellipsis" data-placement="right" title="{{item.teacherLastSurname}}">
+                {{item.teacherLastSurname}}</td>
+              <td>{{item.mark9w1}}</td>
+              <td>{{item.mark9w2}}</td>
+              <td>{{item.mark9w3}}</td>
+              <td>{{item.mark9w4}}</td>
+              <td *ngIf="isHighSchoolStudent || isMiddleSchoolStudent">{{item.fs1}}</td>
+              <td *ngIf="isHighSchoolStudent || isMiddleSchoolStudent">{{item.fs2}}</td>
+              <td>{{item.yfinal}}</td>
+              <td *ngIf="isHighSchoolStudent">{{item.s1abs || item.s2abs}}</td>
+              <td *ngIf="!isHighSchoolStudent">{{item.absencesCount}}</td>
+            </tr>
+          </tbody>
+          <!--<tfoot>
+          <td class="p-0" [attr.colspan]="isHighSchoolStudent ? 13 : 11">
+            <div class="student-profile-footer">
+              <div class="footer-section">Total instructional Days: {{object.totalInstructionalDays}}</div>
+              <div class="footer-section"> {{object.firstName}}'s entry date to school: {{object.entryDate | date: 'MMM/dd/yyyy'}}</div>
+              <div class="footer-section pr-0"> At Risk: <span class="p-1" [ngClass]="{'badge-success': object.atRisk, 'badge-warning': !object.atRisk }">{{object.atRisk ? 'Y' : 'N'}}</span></div>
+              <div class="footer-section pr-0"> ELL: <span class="p-1" [ngClass]="{'badge-success': object.ell, 'badge-warning': !object.ell }">{{object.ell ? 'Y' : 'N'}}</span></div>
+              <div class="footer-section pr-0"> 504: <span class="p-1" [ngClass]="{'badge-success': object.section504, 'badge-warning': !object.section504 }">{{object.section504 ? 'Y' : 'N'}}</span></div>
+              <div class="footer-section pr-0"> AR: <span class="p-1" [ngClass]="{'badge-success': object.ar, 'badge-warning': !object.ar }">{{object.ar ? 'Y' : 'N'}}</span></div>
+              <div class="footer-section pr-0"> SSI: <span class="p-1" [ngClass]="{'badge-success': object.ssi, 'badge-warning': !object.ssi }">{{object.ssi ? 'Y' : 'N'}}</span></div>
+              <div class="footer-section pr-0"> SPED: <span class="p-1" [ngClass]="{'badge-success': object.sped, 'badge-warning': !object.sped }">{{object.sped ? 'Y' : 'N'}}</span></div>
+              <div class="footer-section pr-0"> Homeless: <span class="p-1" [ngClass]="{'badge-success': object.isHomeless, 'badge-warning': !object.isHomeless }">{{object.isHomeless ? 'Y' : 'N'}}</span></div>
+            </div>
+          </td>
+          </tfoot>-->
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="isHighSchoolStudent">
+  <div class="col-12">
+    <h3 class="mt-4">Course Transcript</h3>
+    <app-student-course-transcript [object]="object"></app-student-course-transcript>
+  </div>
+</div>

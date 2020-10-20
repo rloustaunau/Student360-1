@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-body">
+    <h3>All District ADA Students by Instructional Day</h3>
+    <div style="display: block;" class="chart-height">
+      <canvas baseChart
+              [chartType]="'line'"
+              [datasets]="chartData"
+              [labels]="chartLabels"
+              [options]="chartOptions"
+              [legend]="true"></canvas>
+    </div>
+  </div>
+</div>

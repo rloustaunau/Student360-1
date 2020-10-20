@@ -1,0 +1,16 @@
+.main-logo {
+  background-image: url('/assets/webheadercomplet10.png');
+  width: 100%;
+  height: 110px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+@media screen and (max-width: 600px) {
+  .main-logo {
+    background-image: url('/assets/smcisd-short-logo.png');
+    width: 100%;
+    height: 110px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h4 class="modal-title">Student Attendance</h4>
+    <button type="button" class="close outline-none" (click)="activeModal.close('Close click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row" style="margin:0" *ngFor="let period of data.periods">
+        <div class="col-2" style="padding:0">
+            {{period.classPeriodName}}
+        </div>
+        <div class="col-10">
+            <div class="row" class="dna-bar-code d-flex">
+                <div *ngFor="let code of period.absenceCodes" [ngClass]="['dna-code-' + code.absenceCode]"
+                    class="dna-code" [style.width.%]="getBarWidthPercent(code.quantity)">
+                    {{code.quantity}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table grid-table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Absences</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of tableData">
+                <td>
+                    {{row.absenceCode}} <div [ngClass]="['dna-code-' + row.absenceCode]" class="dna-code-box"></div>
+                </td>
+                <td>{{row.description}}</td>
+                <td>{{row.quantity}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

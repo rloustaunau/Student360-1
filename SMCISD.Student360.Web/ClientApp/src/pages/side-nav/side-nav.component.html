@@ -1,0 +1,93 @@
+<nav
+  class="navbar navbar-expand-md navbar-light bg-light h-100 d-flex flex-column side-nav-inside justify-content-start">
+  <ul
+    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+    <a class="navbar-brand text-dark text-left mr-0" [routerLink]="['/']" [routerLinkActive]="['link-active']"
+      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="Home">
+      <div></div>
+      <i class="fa fa-table mr-2"></i> <span
+        class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Home</span>
+    </a>
+  </ul>
+  <ul
+    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+    <a class="navbar-brand text-dark text-left mr-0" [routerLink]="['/dnaChart']" [routerLinkActive]="['link-active']"
+      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="Map">
+      <div></div>
+      <i class="fa fa-map mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">
+        Map
+      </span>
+    </a>
+  </ul>
+  <ul
+    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+    <a class="navbar-brand text-dark text-left mr-0" [routerLink]="['/hours']" [routerLinkActive]="['link-active']"
+      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="Makeup Hours">
+      <div></div>
+      <i class="fa fa-table mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">
+        Makeup
+        Hours
+      </span>
+    </a>
+  </ul>
+  <ul
+    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+    <a class="navbar-brand text-dark text-left mr-0 d-none d-sm-inline-block d-md-inline-block d-lg-inline-block"
+      data-toggle="tooltip" data-placement="right" title="Charts">
+      <div></div>
+      <i class="fa fa-pie-chart mr-2"></i> <span
+        class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Charts</span>
+    </a>
+    <li class="nav-item pl-md-3 pl-lg-3" [routerLink]="['/lineChart']" [routerLinkActive]="['link-active']"
+      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
+      title="Daily ADA District">
+      <div></div>
+      <a class="nav-link text-dark">
+        <i class="fa fa-line-chart mr-2"></i> <span
+          class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Daily ADA District</span>
+      </a>
+    </li>
+    <!-- <li class="nav-item pl-md-3 pl-lg-3" [routerLink]="['/ytdschoollevel']" [routerLinkActive]="['link-active']"
+        [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
+        title="YTD Attendance - Level">
+      <div></div>
+      <a class="nav-link text-dark">
+        <i class="fa fa-line-chart mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">YTD Attendance - Level</span>
+      </a>
+    </li>
+    <li class="nav-item pl-md-3 pl-lg-3" [routerLink]="['/ytdcampus']" [routerLinkActive]="['link-active']"
+        [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
+        title="YTD Attendance - Campus">
+      <div></div>
+      <a class="nav-link text-dark">
+        <i class="fa fa-line-chart mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">YTD Attendance - Campus</span>
+      </a>
+    </li>
+    <li class="nav-item pl-md-3 pl-lg-3" [routerLink]="['/ytdgradelevel']" [routerLinkActive]="['link-active']"
+        [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
+        title="YTD Attendance - Grade">
+      <div></div>
+      <a class="nav-link text-dark">
+        <i class="fa fa-line-chart mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">YTD Attendance - Grade</span>
+      </a>
+    </li> -->
+  </ul>
+  <ul
+    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+    <a class="navbar-brand text-dark text-left mr-0" data-toggle="tooltip" data-placement="right" title="Reports">
+      <i class="fa fa-clipboard mr-2"></i> <span
+        class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Reports</span>
+    </a>
+    <li class="nav-item pl-md-3 pl-lg-3" [routerLink]="['/reports']" [routerLinkActive]="['link-active']"
+      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="SSRS Reports">
+      <div></div>
+      <a class="nav-link text-dark">
+        <i class="fa fa-line-chart mr-2"></i> <span
+          class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">SSRS Reports</span>
+      </a>
+    </li>
+  </ul>
+  <a class="report-bug-button"
+    href="https://form.asana.com/?hash=0802676ad4c96f1959cb35f1b063524930a39f392ed1071f69c9c56bbd94d4d7&id=1181985509904655"
+    target="_blank">Report a Bug</a>
+</nav>
