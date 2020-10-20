@@ -51,7 +51,7 @@ namespace SMCISD.Student360.Persistence.EntityFramework
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Database=EdFi_Ods; Data Source=ax-edfidb\\edfi; Persist Security Info=True; User Id=username; Password=pwd;");
+                optionsBuilder.UseSqlServer("Database=EdFi_Ods; Data Source=edfidb\\edfi; Persist Security Info=True; User Id=username; Password=pwd;");
             }
         }
 
