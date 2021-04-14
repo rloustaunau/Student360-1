@@ -9,7 +9,9 @@ namespace SMCISD.Student360.Persistence.Queries
 {
     public interface IPeopleQueries 
     {
-        Task<List<People>> Get(string email);  
+        Task<List<People>> Get(string email);
+        Task<List<People>> GetStaffByName(string name);
+        Task<People> GetByUSI(int usi);
     }
 
     public class PeopleQueries : IPeopleQueries
@@ -21,7 +23,17 @@ namespace SMCISD.Student360.Persistence.Queries
             _db = db;
         }
         public async Task<List<People>> Get(string email) {
-           return  _db.People.Where(x => x.ElectronicMailAddress == email && x.PositionTitle != null && x.AccessLevel != null).ToList();
-        } 
+           return await _db.People.Where(x => x.ElectronicMailAddress == email && x.PositionTitle != null && x.AccessLevel != null).ToListAsync();
+        }
+
+        public async Task<List<People>> GetStaffByName(string name)
+        {
+            return await _db.People.Where(x => (x.FirstName == name || x.LastSurname==name) && x.PersonType=="Staff" && x.PositionTitle != null && x.AccessLevel != null).ToListAsync();
+        }
+
+        public async Task<People> GetByUSI(int usi)
+        {
+            return await _db.People.FirstOrDefaultAsync(x => x.Usi == usi);
+        }
     }
 }

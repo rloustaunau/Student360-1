@@ -32,7 +32,8 @@ namespace SMCISD.Student360.Resources.Services.StudentHighestAbsenceCourseCount
                 StudentUniqueId  = model.StudentUniqueId,
                 StudentUsi = model.StudentUsi,
                 FirstName = model.FirstName,
-                LastSurname = model.LastSurname
+                LastSurname = model.LastSurname,
+                GradeDescription=model.GradeDescription
             };
         }
 
@@ -49,7 +50,8 @@ namespace SMCISD.Student360.Resources.Services.StudentHighestAbsenceCourseCount
                 StudentUniqueId = entity.StudentUniqueId,
                 StudentUsi = entity.StudentUsi,
                 FirstName = entity.FirstName,
-                LastSurname = entity.LastSurname
+                LastSurname = entity.LastSurname,
+                GradeDescription=entity.GradeDescription
             };
         }
     }

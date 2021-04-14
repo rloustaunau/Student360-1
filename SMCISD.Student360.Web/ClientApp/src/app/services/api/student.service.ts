@@ -34,6 +34,11 @@ export class StudentApiService {
       .pipe(map((result: Grid) => result));
   }
 
+  public getStudentAtRisk(studentUsi: number): Observable<StudentAtRisk> {
+    return this.http.get(`${environment.apiUrl}/api/${this.controllerName}/atRisk/${studentUsi}`)
+      .pipe(map((result: any) => result));
+  }
+
   public getStudentCourseTranscript(request: GridRequest): Observable<Grid> {
     return this.http.post(`${environment.apiUrl}/api/${this.controllerName}/courseTranscript`, request)
       .pipe(map((result: Grid) => result));
@@ -71,6 +76,26 @@ export class StudentAbsencesCodesByPeriod {
   studentUsi: number;
   classPeriodName: string;
   absenceCodes: AbsencesCodesByPeriod[];
+}
+export class StudentAtRisk {
+  studentUsi: number;
+  isHomeless: boolean;
+  section504: boolean;
+  ar: boolean;
+  ssi: boolean;
+  ell: boolean;
+  prePregnant: boolean;
+  preParent: boolean;
+  aep: boolean;
+  expelled: boolean;
+  dropout: boolean;
+  lep: boolean;
+  fosterCare: boolean;
+  residentialPlacementFacility: boolean;
+  incarcerated: boolean;
+  adultEd: boolean;
+  prs: boolean;
+  notAdvanced: boolean;
 }
 export class GeneralStudentDnaData {
   periods: StudentAbsencesCodesByPeriod[];

@@ -8,7 +8,9 @@ namespace SMCISD.Student360.Resources.Services.Reasons
     {
         public string Description { get; set; }
         public string Value { get; set; }
+        public bool HasHours { get; set; }
         public int ReasonId { get; set; }
+
         public DateTime CreateDate { get; set; }
     }
 }

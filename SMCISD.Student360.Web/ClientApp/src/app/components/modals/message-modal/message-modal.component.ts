@@ -6,18 +6,18 @@ import { Input, OnInit, Component } from '@angular/core';
 
 @Component({
   selector: 'app-message-modal',
-    templateUrl: './message-modal.component.html'
+  templateUrl: './message-modal.component.html'
 })
 
 export class MessageModalComponent implements OnInit {
-    @Input() title: string
-    @Input() message: string;
-    @Input() reasons: string[];
-    constructor(public activeModal: NgbActiveModal) {
+  @Input() title: string;
+  @Input() message: string;
+  @Input() reasons: string[];
+  constructor(public activeModal: NgbActiveModal) {
 
-    }
+  }
 
-    ngOnInit() {
-       
-    }
+  ngOnInit() {
+
+  }
 }

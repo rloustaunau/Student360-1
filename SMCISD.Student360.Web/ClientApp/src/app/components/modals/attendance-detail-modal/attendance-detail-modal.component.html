@@ -1,32 +1,33 @@
 <div class="modal-header">
-    <h4 class="modal-title">Student Attendance By Period</h4>
-    <button type="button" class="close outline-none" (click)="activeModal.close('Close click')">
-        <span aria-hidden="true">&times;</span>
-    </button>
+  <h4 class="modal-title">Student Attendance By Period</h4>
+  <button type="button" class="close outline-none" (click)="activeModal.close('Close click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body" *ngIf="filters && studentUsi && filters.length > 0">
   <app-loader [loading]="loading"></app-loader>
   <div class="row">
     <div class="col-12 d-flex align-items-center">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-          <label>Only show state codes</label>
-          <app-filter [filter]="filters[1]" (valueChanged)="updateFilter($event)" [defaultValue]="filters[1].defaultValue" [preFilled]="true"></app-filter>
-        </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-          <input #searchInput class="form-control text-right" placeholder="Search" [(ngModel)]="searchTerm" />
-        </div>
+      <!--<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+        <label>Only show state codes</label>
+        <app-filter [filter]="filters[1]" (valueChanged)="updateFilter($event)" [defaultValue]="filters[1].defaultValue"
+          [preFilled]="true"></app-filter>
+      </div>-->
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+        <input #searchInput class="form-control text-right" placeholder="Search" [(ngModel)]="searchTerm" />
+      </div>
     </div>
   </div>
   <table class="table grid-table">
     <thead>
       <tr>
-        <th width="100px">Date</th>
+        <th width="100px"><a href="#" (click)="orderByDate()" >Date</a></th>
         <th>Course Code</th>
         <th>Course</th>
         <th>Semester</th>
         <th>Code</th>
-        <th>State</th>
-        <th>Period</th>
+        <th>Local</th>
+        <th><a href="#" (click)="orderByPeriod()">Period</a></th>
       </tr>
     </thead>
     <tbody>
@@ -40,7 +41,7 @@
           {{row.semester | shorten: 'first'}}
         </td>
         <td>{{row.code}}</td>
-        <td>{{row.state}}</td>
+        <td>{{row.local}}</td>
         <td>{{row.period}}</td>
       </tr>
     </tbody>

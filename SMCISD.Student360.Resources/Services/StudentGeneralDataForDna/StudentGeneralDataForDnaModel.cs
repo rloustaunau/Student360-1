@@ -14,5 +14,6 @@ namespace SMCISD.Student360.Resources.Services.StudentGeneralDataForDna
         public string State { get; set; }
         public string PostalCode { get; set; }
         public decimal? Gpa { get; set; }
+        public string Sex { get; set; }
     }
 }

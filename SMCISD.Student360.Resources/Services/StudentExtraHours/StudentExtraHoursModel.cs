@@ -5,13 +5,15 @@ namespace SMCISD.Student360.Resources.Services.StudentExtraHours
 {
     public class StudentExtraHoursModel
     {
+        public int StudentExtraHoursId { get; set; }
+        public int Version { get; set; }
         public string StudentUniqueId { get; set; }
         public string GradeLevel { get; set; }
         public string FirstName { get; set; }
         public string LastSurname { get; set; }
         public DateTime Date { get; set; }
-        public int Hours { get; set; }
-        public short? SchoolYear { get; set; }
+        public int? Hours { get; set; }
+        public short SchoolYear { get; set; }
         public string UserCreatedUniqueId { get; set; }
         public string UserRole { get; set; }
         public string UserFirstName { get; set; }

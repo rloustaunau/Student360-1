@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <h1>Report List</h1>
-        <div class="report-list p-3 cursor-pointer" *ngFor="let report of reports" (click) = "updateUrl(report.reportUri)">
+        <div class="report-list p-3 cursor-pointer" *ngFor="let report of reports" (click)="updateUrl(report)">
             <h3><i class="fa fa-file mr-4"></i>{{report.reportName}}</h3>
         </div>
     </div>

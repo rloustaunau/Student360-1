@@ -1,0 +1,96 @@
+﻿<h3 style="margin-top:40px;">San Marcos Consolidated Independent School District</h3>
+<h3>{{SchoolName}}</h3>
+<span class="text-row-center">{{SchoolAddress}} ~ {{SchoolCity}}, {{SchoolState}} {{SchoolPostalCode}} ~ {{SchoolPhoneNumber}}</span>
+<hr>
+<span>{{Today}}</span>
+
+<div style="text-align: right;">
+    <div style="display: inline-block;border: 1px solid; padding:10px;">
+        {{AlertLevel}}
+    </div>
+</div>
+<p>TO THE PARENT/GUARDIAN OF: <br>
+    {{StudentName}}<br>
+    {{StudentAddress}}<br>
+    {{StudentCity}}, {{StudentState}} {{StudentPostalCode}}<br>
+</p>
+<br>
+
+<p>RE: Student Absent from School: {{StudentName}}, {{StudentUniqueId}}</p>
+
+<p>Dear SMCISD Parent or Guardian:</p>
+
+<p class="pdf-p">{{StudentName}} has now missed more than
+    {{LetterType}} unexcused days of school/class within the
+    last three months of school.
+    Excessive school absences lead to lowered performance in student achievement making it more difficult to read, write
+    and do math on grade level. In a typical school year, ten or more absences are excessive and {{StudentName}}
+    now has more than {{LetterType}}.
+</p>
+<p class="pdf-p">
+    State law requires to attend school regurlarly in order to remain on grade level and graduate on time with her class. Due to
+    the number of unexcused absences of {{StudentName}}, the District requires a face-to-face meeting with you and campus administration
+    to discuss ways in which to improve her school attendance. If your child is between the ages of 12-18 years old, she will be placed
+    on an attendance agreement and referred to additional resources to provide support.
+</p>
+
+<p class="pdf-p">
+    Please be aware that parent/guardians and/or students (12-18 years old) are subject to court proceedings once the student reaches 10
+    unexcused absences within a six month period. Please call the school Attendance Clerk, April Clark, at 512-757-8491 to schedule an
+    appointment with a school administrator. We look forward to working with you.
+</p>
+<br>
+
+<p>Sincerely,</p>
+
+<p>{{SchoolPrincipal}}<br>Principal</p>
+<br>
+<br>
+
+<div class="center" style="page-break-after: always;">
+    <table class="pdfTable">
+        <thead>
+            <tr>
+                <th colspan="2">When Do Absences Become a
+                    Problem?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="50px">Severe</td>
+                <td width="500px">
+                    <span class="text-row-center">CHRONIC ABSENCE</span>
+                    <span class="text-row-center">18 or more days or parts of days in a school
+                        year</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="50px">Warning</td>
+                <td width="500px">
+                    <span class="text-row-center">WARNING SIGNS</span>
+                    <span class="text-row-center">10 to 17 days or parts of days in a school
+                        year</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="50px">Satisfactory</td>
+                <td width="500px">
+                    <span class="text-row-center">SATISFACTORY</span>
+                    <span class="text-row-center">9 or fewer days or parts of days in a school
+                        year</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+
+    <p class="footer-text">Texas law requires students to attend school regularly and
+        requires parent to
+        make sure their child attends
+        school regularly (Texas Education Code 25.0915). In addition, parents are subject to prosecution (Texas
+        Education Code 25.093) and students to be referred to truancy court (Texas Family Code 65.003(a)) for
+        non-attendance.</p>
+</div>
+

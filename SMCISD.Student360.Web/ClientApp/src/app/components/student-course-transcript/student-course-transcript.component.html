@@ -12,8 +12,11 @@
             <tr>
               <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Course Code">Code</th>
               <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Course">Course</th>
-              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Final Grade">Final Grade</th>
-              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Attempted Credits">Attempted Credits </th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="SchoolYear">School Year</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Final Grade">Final Grade
+              </th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Attempted Credits">Attempted
+                Credits </th>
               <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Earned Credits">
                 Earned Credits
               </th>
@@ -27,6 +30,7 @@
               <td class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="{{item.courseTitle}}">
                 {{item.courseTitle}}
               </td>
+              <td>{{item.schoolYear}}</td>
               <td>{{item.finalNumericGradeEarned }}</td>
               <td>{{item.attemptedCredits }}</td>
               <td>{{item.earnedCredits}}</td>
@@ -37,4 +41,3 @@
     </div>
   </div>
 </div>
-

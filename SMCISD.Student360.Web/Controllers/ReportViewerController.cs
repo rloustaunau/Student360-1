@@ -36,9 +36,10 @@ namespace SMCISD.Student360.Web.Controllers
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
             string basePath = _hostingEnvironment.WebRootPath;
+           
             // Here, we have loaded the sales-order-detail.rdl report from application the folder wwwroot\Resources. sales-order-detail.rdl should be there in wwwroot\Resources application folder.
             System.IO.FileStream reportStream = new System.IO.FileStream(basePath + reportOption?.ReportModel?.ReportPath, System.IO.FileMode.Open, System.IO.FileAccess.Read);
-            reportOption.ReportModel.Stream = reportStream;
+            reportOption.ReportModel.Stream = reportStream; 
         }
 
         // Method will be called when reported is loaded with internally to start to layout process with ReportHelper.

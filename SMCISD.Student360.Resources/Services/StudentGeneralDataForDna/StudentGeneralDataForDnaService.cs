@@ -38,7 +38,8 @@ namespace SMCISD.Student360.Resources.Services.StudentGeneralDataForDna
                 City = model.City,
                 State = model.State,
                 PostalCode = model.PostalCode,
-                Gpa = model.Gpa
+                Gpa = model.Gpa,
+                Sex = model.Sex
             };
         }
 
@@ -53,7 +54,8 @@ namespace SMCISD.Student360.Resources.Services.StudentGeneralDataForDna
                 City = entity.City,
                 State = entity.State,
                 PostalCode = entity.PostalCode,
-                Gpa = entity.Gpa
+                Gpa = entity.Gpa,
+                Sex = entity.Sex
             };
         }
     }

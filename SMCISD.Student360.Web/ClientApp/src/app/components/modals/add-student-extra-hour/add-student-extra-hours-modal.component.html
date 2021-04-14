@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Add Student Make Up Hours</h4>
+  <h4 class="modal-title">Add Student Attendance Action</h4>
   <button type="button" class="close outline-none" (click)="activeModal.close(false)">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -31,7 +31,7 @@
         <input type="date" class="form-control" [(ngModel)]="studentExtraHour.date" />
       </div>
     </div>
-    <div class="col-12 col-xs-12 col-md-6 col-lg-6">
+    <div class="col-12 col-xs-12 col-md-6 col-lg-6" *ngIf="!isElementarySchoolStudent">
       <div class="form-group">
         <label>Hours</label>
         <input type="number" class="form-control" [(ngModel)]="studentExtraHour.hours" />
@@ -43,7 +43,7 @@
     <div class="col-12">
       <div class="form-group">
         <label>Comments</label>
-        <textarea class="form-control" [(ngModel)]="studentExtraHour.comments" rows="3"></textarea>
+        <textarea class="form-control" [(ngModel)]="studentExtraHour.comments" rows="3" maxlength="256"></textarea>
       </div>
     </div>
   </div>

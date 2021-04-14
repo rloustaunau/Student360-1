@@ -9,6 +9,8 @@ namespace SMCISD.Student360.Persistence.Grid
         public int TotalCount { get; set; }
         public int FilteredCount { get; set; }
         public long QueryExecutionMs { get; set; }
+        public IEnumerable<object> Metadata { get; set; }
+
     }
 
     public interface IGridResponse

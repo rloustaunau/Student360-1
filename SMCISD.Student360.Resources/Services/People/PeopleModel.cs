@@ -28,7 +28,7 @@ namespace SMCISD.Student360.Resources.Services.People
         public string ElectronicMailAddress { get; set; }
         public string Role { get; set; }
         public string AccessLevel { get; set; } 
-        public int? LevelId { get; set; }
+        public string LevelId { get; set; }
         public List<EdOrgAssociation> EdOrgAssociations { get; set; }
         public int? SchoolId { get; set; }
         public int? LocalEducationAgencyId { get; set; }

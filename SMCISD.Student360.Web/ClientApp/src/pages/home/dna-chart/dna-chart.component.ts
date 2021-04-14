@@ -14,7 +14,7 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./dna-chart.component.css']
 })
 
-export class DnaChartComponent implements AfterViewInit{
+export class DnaChartComponent implements AfterViewInit {
   loading = false;
   data: any;
   searchTerm: string;
@@ -64,16 +64,16 @@ export class DnaChartComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-      fromEvent(this.searchInput.nativeElement, 'keyup')
-        .pipe(
-          filter(Boolean),
-          debounceTime(1500),
-          distinctUntilChanged(),
-          tap((text) => {
-            this.search(this.searchInput.nativeElement.value);
-          })
-        )
-        .subscribe();
+    fromEvent(this.searchInput.nativeElement, 'keyup')
+      .pipe(
+        filter(Boolean),
+        debounceTime(1500),
+        distinctUntilChanged(),
+        tap((text) => {
+          this.search(this.searchInput.nativeElement.value);
+        })
+      )
+      .subscribe();
   }
 
   search(searchTerm: string) {
@@ -161,7 +161,7 @@ export class DnaChartComponent implements AfterViewInit{
             ${student.adaAbsences} Missed ADA (Days) <br>
             ${student.firstName} ${(student.middleName ? (student.middleName + ' ') : '')} ${student.lastSurname} <br>
             Student Unique Id: ${student.studentUniqueId} <br> 
-            Address: ${generalData.streetNumberName} ${generalData.apartmentRoomSuiteNumber ? generalData.apartmentRoomSuiteNumber : '' } <br>
+            Address: ${generalData.streetNumberName} ${generalData.apartmentRoomSuiteNumber ? generalData.apartmentRoomSuiteNumber : ''} <br>
             ${generalData.city}, ${generalData.state} ${generalData.postalCode ? generalData.postalCode : ''}
             Campus: ${generalData.nameOfInstitution} <br>
             GPA: ${generalData.gpa}
@@ -227,7 +227,7 @@ export class DnaChartComponent implements AfterViewInit{
     });
   }
 
-  sendRequest(search? :string) {
+  sendRequest(search?: string) {
     if (this.mapElement)
       this.map = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions);
     this.loading = true;
@@ -249,7 +249,7 @@ export class DnaChartComponent implements AfterViewInit{
             this.coordinatesHelper[x.latitude + '-' + x.longitude] = 0;
           else
             this.coordinatesHelper[x.latitude + '-' + x.longitude] += 2;
-          
+
           x.latitude = Number(x.latitude) + (this.coordinatesHelper[x.latitude + '-' + x.longitude] / 1000);
           x.longitude = Number(x.longitude);
         }

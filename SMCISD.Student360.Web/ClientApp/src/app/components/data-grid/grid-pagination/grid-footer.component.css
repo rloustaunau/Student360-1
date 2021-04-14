@@ -1,0 +1,17 @@
+.selected-page {
+  background-color: #03A9F4;
+  border: 1px solid #03A9F4;
+  color: white !important;
+}
+.grid-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pagination-nav {
+  float: right;
+}
+
+.pagination-meta {
+  margin-top: 5px;
+}

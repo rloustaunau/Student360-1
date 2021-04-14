@@ -12,6 +12,7 @@ namespace SMCISD.Student360.Resources.Services.People
     public interface IPeopleService 
     {
         Task<PeopleModel> Get(string email);
+        Task<List<PeopleModel>> GetStaffByName(string name);
     }
 
     public class PeopleService : IPeopleService
@@ -33,6 +34,23 @@ namespace SMCISD.Student360.Resources.Services.People
 
 
             return MapPeopleEntityListToPeopleModel(entityList);
+        }
+
+        public async Task<List<PeopleModel>> GetStaffByName(string name)
+        {
+            var entityList = await _queries.GetStaffByName(name);
+
+            if (entityList.Count() == 0)
+                throw new UnauthorizedAccessException("No data");
+
+            List<PeopleModel> models = new List<PeopleModel>();
+
+            foreach (var entity in entityList) {
+                var model = MapPeopleEntityToPeopleModel(entity);
+                models.Add(model);
+            }
+
+            return models;
         }
 
         private PeopleModel MapPeopleEntityListToPeopleModel(List<Persistence.Models.People> entityList)
@@ -69,7 +87,9 @@ namespace SMCISD.Student360.Resources.Services.People
                 LastSurname = model.LastSurname,
                 PositionTitle = model.Role,
                 SchoolId = model.SchoolId,
-                LocalEducationAgencyId = model.LocalEducationAgencyId
+                LocalEducationAgencyId = model.LocalEducationAgencyId,
+                AccessLevel=model.AccessLevel,
+                LevelId=model.LevelId
             };
         }
 
@@ -84,7 +104,9 @@ namespace SMCISD.Student360.Resources.Services.People
                 LastSurname = entity.LastSurname,
                 Role = entity.PositionTitle,
                 SchoolId = entity.SchoolId,
-                LocalEducationAgencyId = entity.LocalEducationAgencyId
+                LocalEducationAgencyId = entity.LocalEducationAgencyId,
+                AccessLevel=entity.AccessLevel,
+                LevelId=entity.LevelId
             };
         }
 

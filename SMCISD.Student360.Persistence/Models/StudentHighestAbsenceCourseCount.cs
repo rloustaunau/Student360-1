@@ -44,5 +44,6 @@ namespace SMCISD.Student360.Persistence.Models
         public decimal? AbsencePercent { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal? Gpa { get; set; }
+        public string GradeDescription { get; set; }
     }
 }

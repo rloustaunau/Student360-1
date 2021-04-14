@@ -1,6 +1,7 @@
 ﻿using SMCISD.Student360.Persistence.Grid;
 using SMCISD.Student360.Persistence.Queries;
 using SMCISD.Student360.Resources.Providers.Image;
+using System;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
@@ -31,12 +32,23 @@ namespace SMCISD.Student360.Resources.Services.StudentAbsencesByCourse
                 return null;
 
             var gridData = await _queries.GetGridData(request, currentUser);
+            string image = "";
+            try
+            {
+                image = await _imgProvider.GetStudentImageUrlAsync(studentUniqueId.Value.ToString());
+            }
+            catch (Exception) {
+                image = "";
+            }
+            
 
             return new StudentProfileModel
             {
                 Grid = gridData,
-                ImageUrl = await _imgProvider.GetStudentImageUrlAsync(studentUniqueId.Value.ToString())
+                ImageUrl = image
             };
+
+
         }
 
         private Persistence.Models.StudentAbsencesByCourse MapStudentAbsencesByCourseModelToStudentAbsencesByCourseEntity(StudentAbsencesByCourseModel model)

@@ -8,6 +8,7 @@ import { ReportApiService } from './report.service';
 import { ReportViewerService } from './report-viewer.service';
 import { ImageApiService } from './image.service';
 import { StudentExtraHourService } from './student-extra-hour.service';
+import { AttendanceLetterService } from './attendance-letter.service';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -20,5 +21,6 @@ export class ApiService {
     public report: ReportApiService,
     public reportViewer: ReportViewerService,
     public image: ImageApiService,
-    public studentExtraHour: StudentExtraHourService) { }
+    public studentExtraHour: StudentExtraHourService,
+    public letter: AttendanceLetterService) { }
 }

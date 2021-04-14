@@ -15,12 +15,21 @@ namespace SMCISD.Student360.Persistence.EntityFramework
             : base(options)
         {
         }
-
+        public virtual DbSet<AccessLevelDefinition> AccessLevelDefinition { get; set; }
+        public virtual DbSet<AccessToSystem> AccessToSystem { get; set; }
         public virtual DbSet<Adacampus> Adacampus { get; set; }
         public virtual DbSet<Adadistrict> Adadistrict { get; set; }
+        public virtual DbSet<AttendanceLetterGrid> AttendanceLetterGrid { get; set; }
+        public virtual DbSet<AttendanceLetterStatus> AttendanceLetterStatus { get; set; }
+        public virtual DbSet<AttendanceLetterType> AttendanceLetterType { get; set; }
+        public virtual DbSet<AttendanceLetters> AttendanceLetters { get; set; }
+        public virtual DbSet<CalendarMembershipDays> CalendarMembershipDays { get; set; }
         public virtual DbSet<Cohort> Cohort { get; set; }
         public virtual DbSet<DistrictDailyAttendanceRate> DistrictDailyAttendanceRate { get; set; }
+        public virtual DbSet<EducationOrganizationInformation> EducationOrganizationInformation { get; set; }
+        public virtual DbSet<FirstDayOfSchool> FirstDayOfSchool { get; set; }
         public virtual DbSet<Grade> Grade { get; set; }
+        public virtual DbSet<HomeroomToStudentUsi> HomeroomToStudentUsi { get; set; }
         public virtual DbSet<LocalEducationAgencyIdToStaffUsi> LocalEducationAgencyIdToStaffUsi { get; set; }
         public virtual DbSet<ParentUsitoSchoolId> ParentUsitoSchoolId { get; set; }
         public virtual DbSet<ParentUsitoStudentUsi> ParentUsitoStudentUsi { get; set; }
@@ -31,32 +40,45 @@ namespace SMCISD.Student360.Persistence.EntityFramework
         public virtual DbSet<SchoolYears> SchoolYears { get; set; }
         public virtual DbSet<Schools> Schools { get; set; }
         public virtual DbSet<Semesters> Semesters { get; set; }
+        public virtual DbSet<StaffAccessLevel> StaffAccessLevel { get; set; }
+        public virtual DbSet<StaffEducationOrganizationAssignmentAssociation> StaffEducationOrganizationAssignmentAssociation { get; set; }
         public virtual DbSet<StudentAbsencesByCourse> StudentAbsencesByCourse { get; set; }
         public virtual DbSet<StudentAbsencesByPeriod> StudentAbsencesByPeriod { get; set; }
         public virtual DbSet<StudentAbsencesCodesByPeriod> StudentAbsencesCodesByPeriod { get; set; }
+        public virtual DbSet<StudentAbsencesForEmails> StudentAbsencesForEmails { get; set; }
         public virtual DbSet<StudentAbsencesLocation> StudentAbsencesLocation { get; set; }
+        public virtual DbSet<StudentAtRisk> StudentAtRisk { get; set; }
         public virtual DbSet<StudentAttendanceDetail> StudentAttendanceDetail { get; set; }
         public virtual DbSet<StudentCourseTranscript> StudentCourseTranscript { get; set; }
         public virtual DbSet<StudentExtraHourCurrentGrid> StudentExtraHourCurrentGrid { get; set; }
         public virtual DbSet<StudentExtraHourGrid> StudentExtraHourGrid { get; set; }
+        public virtual DbSet<StudentExtraHourHistory> StudentExtraHourHistory { get; set; }
         public virtual DbSet<StudentExtraHours> StudentExtraHours { get; set; }
         public virtual DbSet<StudentGeneralDataForDna> StudentGeneralDataForDna { get; set; }
         public virtual DbSet<StudentHighestAbsenceCourseCount> StudentHighestAbsenceCourseCount { get; set; }
         public virtual DbSet<TeacherToStudentUsi> TeacherToStudentUsi { get; set; }
         public virtual DbSet<YtdgradeLevel> YtdgradeLevel { get; set; }
         public virtual DbSet<YtdschoolLevels> YtdschoolLevels { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Database=EdFi_Ods; Data Source=edfidb\\edfi; Persist Security Info=True; User Id=username; Password=pwd;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AccessLevelDefinition>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                    .HasName("AccessLevelDefinition_PK");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+            });
+
+            modelBuilder.Entity<AccessToSystem>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                    .HasName("AccessToSystem_PK");
+
+                entity.Property(e => e.LastLogin).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+            });
+
             modelBuilder.Entity<Adacampus>(entity =>
             {
                 entity.HasNoKey();
@@ -69,6 +91,62 @@ namespace SMCISD.Student360.Persistence.EntityFramework
                 entity.HasNoKey();
 
                 entity.ToView("ADADistrict", "student360");
+            });
+
+            modelBuilder.Entity<AttendanceLetterGrid>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("AttendanceLetterGrid", "student360");
+            });
+
+            modelBuilder.Entity<AttendanceLetterStatus>(entity =>
+            {
+                entity.HasKey(e => e.AttendanceLetterStatusId)
+                    .HasName("AttendanceLetterStatus_PK");
+
+                entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+            });
+
+            modelBuilder.Entity<AttendanceLetterType>(entity =>
+            {
+                entity.HasKey(e => e.AttendanceLetterTypeId)
+                    .HasName("AttendanceLetterType_PK");
+
+                entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+            });
+
+            modelBuilder.Entity<AttendanceLetters>(entity =>
+            {
+                entity.HasKey(e => e.AttendanceLetterId)
+                    .HasName("AttendanceLetters_PK");
+
+                entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.HasOne(d => d.AttendanceLetterStatus)
+                    .WithMany(p => p.AttendanceLetters)
+                    .HasForeignKey(d => d.AttendanceLetterStatusId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AttendanceLetters_AttendanceLetterStatus");
+
+                entity.HasOne(d => d.AttendanceLetterType)
+                    .WithMany(p => p.AttendanceLetters)
+                    .HasForeignKey(d => d.AttendanceLetterTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AttendanceLetters_AttendanceLetterType");
+            });
+
+            modelBuilder.Entity<CalendarMembershipDays>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("CalendarMembershipDays", "student360");
             });
 
             modelBuilder.Entity<Cohort>(entity =>
@@ -85,11 +163,34 @@ namespace SMCISD.Student360.Persistence.EntityFramework
                 entity.ToView("DistrictDailyAttendanceRate", "student360");
             });
 
+            modelBuilder.Entity<EducationOrganizationInformation>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("EducationOrganizationInformation", "student360");
+
+                entity.Property(e => e.Phone).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<FirstDayOfSchool>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("FirstDayOfSchool", "student360");
+            });
+
             modelBuilder.Entity<Grade>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToView("Grade", "student360");
+            });
+
+            modelBuilder.Entity<HomeroomToStudentUsi>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("HomeroomToStudentUsi", "student360");
             });
 
             modelBuilder.Entity<LocalEducationAgencyIdToStaffUsi>(entity =>
@@ -167,6 +268,22 @@ namespace SMCISD.Student360.Persistence.EntityFramework
                 entity.ToView("Semesters", "student360");
             });
 
+            modelBuilder.Entity<StaffAccessLevel>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                    .HasName("AccessLevelDefinition_PK");
+            });
+
+            modelBuilder.Entity<StaffEducationOrganizationAssignmentAssociation>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                    .HasName("StaffEducationOrganizationAssignmentAssociation_PK");
+
+                entity.Property(e => e.LastModifiedDate).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+            });
+
             modelBuilder.Entity<StudentAbsencesByCourse>(entity =>
             {
                 entity.HasNoKey();
@@ -188,11 +305,25 @@ namespace SMCISD.Student360.Persistence.EntityFramework
                 entity.ToView("StudentAbsencesCodesByPeriod", "student360");
             });
 
+            modelBuilder.Entity<StudentAbsencesForEmails>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("StudentAbsencesForEmails", "student360");
+            });
+
             modelBuilder.Entity<StudentAbsencesLocation>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToView("StudentAbsencesLocation", "student360");
+            });
+
+            modelBuilder.Entity<StudentAtRisk>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("StudentAtRisk_Discrepancies", "student360");
             });
 
             modelBuilder.Entity<StudentAttendanceDetail>(entity =>
@@ -225,10 +356,19 @@ namespace SMCISD.Student360.Persistence.EntityFramework
                 entity.ToView("StudentExtraHourGrid", "student360");
             });
 
+            modelBuilder.Entity<StudentExtraHourHistory>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("StudentExtraHourHistory", "student360");
+            });
+
             modelBuilder.Entity<StudentExtraHours>(entity =>
             {
-                entity.HasKey(e => new { e.StudentUniqueId, e.Date, e.ReasonId, e.UserCreatedUniqueId, e.UserRole })
+                entity.HasKey(e => new { e.StudentExtraHoursId, e.Version })
                     .HasName("StudentExtraHours_PK");
+
+                entity.Property(e => e.StudentExtraHoursId).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
 

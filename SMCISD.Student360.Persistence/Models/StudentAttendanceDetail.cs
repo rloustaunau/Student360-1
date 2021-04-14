@@ -29,5 +29,8 @@ namespace SMCISD.Student360.Persistence.Models
         [Required]
         [StringLength(60)]
         public string Period { get; set; }
+        [StringLength(60)]
+        public string Description { get; set; }
+        public string Local { get; set; }
     }
 }

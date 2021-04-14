@@ -1,50 +1,52 @@
-<nav
-  class="navbar navbar-expand-md navbar-light bg-light h-100 d-flex flex-column side-nav-inside justify-content-start">
-  <ul
-    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+<nav class="navbar navbar-expand-md navbar-light bg-light h-100 d-flex flex-column side-nav-inside justify-content-start">
+  <ul class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
     <a class="navbar-brand text-dark text-left mr-0" [routerLink]="['/']" [routerLinkActive]="['link-active']"
-      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="Home">
+       [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="Home">
       <div></div>
-      <i class="fa fa-table mr-2"></i> <span
-        class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Home</span>
+      <i class="fa fa-table mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Home</span>
     </a>
   </ul>
-  <ul
-    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+  <ul class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
     <a class="navbar-brand text-dark text-left mr-0" [routerLink]="['/dnaChart']" [routerLinkActive]="['link-active']"
-      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="Map">
+       [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="Map">
       <div></div>
       <i class="fa fa-map mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">
         Map
       </span>
     </a>
   </ul>
-  <ul
-    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+  <ul class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
     <a class="navbar-brand text-dark text-left mr-0" [routerLink]="['/hours']" [routerLinkActive]="['link-active']"
-      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="Makeup Hours">
+       [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
+       title="Attendance Actions">
       <div></div>
       <i class="fa fa-table mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">
-        Makeup
-        Hours
+        Attendance Actions
       </span>
     </a>
   </ul>
-  <ul
-    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
-    <a class="navbar-brand text-dark text-left mr-0 d-none d-sm-inline-block d-md-inline-block d-lg-inline-block"
-      data-toggle="tooltip" data-placement="right" title="Charts">
+  <ul class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+    <a class="navbar-brand text-dark text-left mr-0" [routerLink]="['/letters']" [routerLinkActive]="['link-active']"
+       [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
+       title="Attendance Letters">
       <div></div>
-      <i class="fa fa-pie-chart mr-2"></i> <span
-        class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Charts</span>
+      <i class="fa fa-table mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">
+        Attendance Letters
+      </span>
+    </a>
+  </ul>
+  <ul class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+    <a class="navbar-brand text-dark text-left mr-0 d-none d-sm-inline-block d-md-inline-block d-lg-inline-block"
+       data-toggle="tooltip" data-placement="right" title="Charts">
+      <div></div>
+      <i class="fa fa-pie-chart mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Charts</span>
     </a>
     <li class="nav-item pl-md-3 pl-lg-3" [routerLink]="['/lineChart']" [routerLinkActive]="['link-active']"
-      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
-      title="Daily ADA District">
+        [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
+        title="Daily ADA District">
       <div></div>
       <a class="nav-link text-dark">
-        <i class="fa fa-line-chart mr-2"></i> <span
-          class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Daily ADA District</span>
+        <i class="fa fa-line-chart mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Daily ADA District</span>
       </a>
     </li>
     <!-- <li class="nav-item pl-md-3 pl-lg-3" [routerLink]="['/ytdschoollevel']" [routerLinkActive]="['link-active']"
@@ -72,22 +74,31 @@
       </a>
     </li> -->
   </ul>
-  <ul
-    class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+  <ul class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
     <a class="navbar-brand text-dark text-left mr-0" data-toggle="tooltip" data-placement="right" title="Reports">
-      <i class="fa fa-clipboard mr-2"></i> <span
-        class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Reports</span>
+      <i class="fa fa-clipboard mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">Reports</span>
     </a>
     <li class="nav-item pl-md-3 pl-lg-3" [routerLink]="['/reports']" [routerLinkActive]="['link-active']"
-      [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="SSRS Reports">
+        [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right" title="SSRS Reports">
       <div></div>
       <a class="nav-link text-dark">
-        <i class="fa fa-line-chart mr-2"></i> <span
-          class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">SSRS Reports</span>
+        <i class="fa fa-line-chart mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">SSRS Reports</span>
       </a>
     </li>
   </ul>
+
+  <ul *ngIf="access" class="navbar-nav w-100 flex-column justify-content-center align-items-center align-items-sm-start align-items-md-start align-items-lg-start cursor-pointer">
+    <a class="navbar-brand text-dark text-left mr-0" [routerLink]="['/securityLevel']" [routerLinkActive]="['link-active']"
+       [routerLinkActiveOptions]="{ exact: true }" data-toggle="tooltip" data-placement="right"
+       title="Modify Security Levels">
+      <div></div>
+      <i class="fa fa-user mr-2"></i> <span class="d-none d-sm-inline-block d-md-inline-block d-lg-inline-block">
+        Modify Security Level
+      </span>
+    </a>
+  </ul>
+
   <a class="report-bug-button"
-    href="https://form.asana.com/?hash=0802676ad4c96f1959cb35f1b063524930a39f392ed1071f69c9c56bbd94d4d7&id=1181985509904655"
-    target="_blank">Report a Bug</a>
+     href="https://form.asana.com/?hash=0802676ad4c96f1959cb35f1b063524930a39f392ed1071f69c9c56bbd94d4d7&id=1181985509904655"
+     target="_blank">Report a Bug</a>
 </nav>

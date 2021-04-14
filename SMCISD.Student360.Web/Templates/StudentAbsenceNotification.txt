@@ -1,0 +1,42 @@
+﻿
+<table style="width: 100%; font-family: Arial;font-size: 13px;color: #555;background-color: #eeeeee;">
+    <tbody>
+        <tr>
+            <td style="padding:20px 0 30px 0">
+                <table align="center" style="width:100%;">
+                    <tbody>
+                        <tr><td style="background-color:#dd4b39; height:15px;"></td></tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9">
+                                <h2 style="color:#666; text-align:center; margin:40px 80px; line-height:1.5em">
+                                    Dear {{StaffFullName}}
+                                </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center; color:#333; padding:20px; background-color:#eeeeee">
+                                <p style="color:#777;font-size:.9em">
+                                  {{EmailMessage}} 
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:20px 20px 40px 20px">
+                                <table style="width:100%; text-align:left; border-spacing:0;font-size:.9em;" border="1">
+                                    {{TableContent}}
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center; color:#333; padding:20px; background-color:#eeeeee">
+                                <p style="color:#777;font-size:.9em">
+                                    This email was sent automatically by the SMCISD Student360 Team.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

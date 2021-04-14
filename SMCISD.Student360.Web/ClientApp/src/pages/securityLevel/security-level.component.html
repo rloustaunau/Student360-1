@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-md-3 mb-3">
+    <label for="search">Search</label>
+    <input id="search" type="search" class="form-control" (keyup.enter)="searchChanged($event.target.value)"/>
+  </div>
+</div>
+
+
+<div class="row m-b-30">  
+  <div class="col-12 col-xs-12 col-md-12 col-lg-8">
+    <div class="card m-0 h-300pc">
+      <div class="card-body">
+
+        <div class="max-height-50vh">
+          <table class="table grid-table">
+            <thead>
+              <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                  UDN
+                </th>
+                <th>
+                  H. Access
+                </th>
+                <th>
+                  AD Title
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of peoples" (click)="getAssignmentAssociation(item)" [ngClass]="{'tableSelected': item.usi==tableSelected}">
+                <td>
+                  {{item.lastSurname}}, {{item.firstName}}
+                </td>
+                <td>
+                  {{item.electronicMailAddress}}
+                </td>
+                <td>
+                  {{item.accessLevel}}
+                </td>
+                <td>
+                  {{item.role}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="!peoples || peoples.length == 0" class="grid-no-data text-center">No Data</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row justify-content-end">
+  <div class="col-md-2 col-sm-12 justify-content-end p-3">
+    <button type="button"  class="btn btn-primary w-100" [disabled]="isDisable"  (click)="showAddModal()">
+      Add <i class="fa fa-plus p-2"></i>
+    </button>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <app-loader [loading]="loading"></app-loader>
+    <div class="grid-table-container max-height-50vh">
+      <table class="table grid-table">
+        <thead>
+          <tr>
+            <th>
+              Level Description
+            </th>
+            <th>
+              Level Id
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Location
+            </th>
+            <th>
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of staff">
+            <td>
+              {{item.positionTitle}} {{getStaffTitle(item.staffClassificationDescriptorId)}}
+            </td>
+            <td>
+              {{item.level}} {{getStaffLevel(item.staffClassificationDescriptorId)}}
+            </td>
+            <td>
+              {{item.staffClassificationDescriptorId}}
+            </td>
+            <td>
+              {{getSchoolName(item.educationOrganizationId)}}
+            </td>
+            <td class="text-center">
+              <button type="button" (click)="showEditModal(item)" class="btn btn-primary p-0 w-30px h-30px mr-2" data-toggle="tooltip" data-placement="right" title="Actions">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+            <td class="text-center">
+              <button type="button" (click)="confirmDelete(item)" class="btn btn-primary p-0 w-30px h-30px mr-2" data-toggle="tooltip" data-placement="right" title="Actions">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!staff || staff.length == 0" class="grid-no-data text-center">No Data</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tableSelected {
+    color: #007bff;
+    border-left: 1px solid #007bff !important;
+  }
+</style>

@@ -1,0 +1,13 @@
+<div class="grid-pagination" *ngIf="showPagination">
+  <a class="pagination-meta" *ngIf="filteredCount == totalCount">Showing {{(pageSize * (pageNumber - 1)) + 1}} to {{pageSize + (pageSize * (pageNumber - 1))}} of {{totalCount}} entries</a>
+  <a class="pagination-meta" *ngIf="filteredCount != totalCount">Showing {{(pageSize * (pageNumber - 1)) + 1}} to {{pageSize + (pageSize * (pageNumber - 1))}} of {{filteredCount}} entries (filtered from {{totalCount}} total entries)</a>
+  <nav>
+    <ul class="pagination pagination-nav">
+      <li class="page-item"><a class="page-link" (click)="pageSelected(calculateFirstPage() - 1)" *ngIf="calculateFirstPage() != 1">Previous</a></li>
+      <li class="page-item"><a class="page-link" [ngClass]="{'selected-page': pageNumber == calculateFirstPage()}" (click)="pageSelected(calculateFirstPage())" *ngIf="calculateFirstPage() <= maxPageNumber">{{calculateFirstPage()}}</a></li>
+      <li class="page-item"><a class="page-link" [ngClass]="{'selected-page': pageNumber == calculateSecondPage()}" (click)="pageSelected(calculateSecondPage())" *ngIf="calculateSecondPage() <= maxPageNumber">{{calculateSecondPage()}}</a></li>
+      <li class="page-item"><a class="page-link" [ngClass]="{'selected-page': pageNumber == calculateThirdPage()}" (click)="pageSelected(calculateThirdPage())" *ngIf="calculateThirdPage() <= maxPageNumber">{{calculateThirdPage()}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="pageSelected((calculateThirdPage() + 1))" *ngIf="calculateThirdPage() <= maxPageNumber">Next</a></li>
+    </ul>
+  </nav>
+</div>

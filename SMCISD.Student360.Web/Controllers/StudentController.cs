@@ -9,6 +9,7 @@ using SMCISD.Student360.Persistence.Grid;
 using SMCISD.Student360.Resources.Services.StudentAbsencesByCourse;
 using SMCISD.Student360.Resources.Services.StudentAbsencesCodesByPeriod;
 using SMCISD.Student360.Resources.Services.StudentAbsencesLocation;
+using SMCISD.Student360.Resources.Services.StudentAtRisk;
 using SMCISD.Student360.Resources.Services.StudentAttendanceDetail;
 using SMCISD.Student360.Resources.Services.StudentCourseTranscript;
 using SMCISD.Student360.Resources.Services.StudentExtraHours;
@@ -26,12 +27,14 @@ namespace SMCISD.Student360.Api.Controllers
         private readonly IStudentAbsencesLocationService _studentAbsencesLocationService;
         private readonly IStudentAbsencesCodesByPeriodService _studentAbsencesCodesByPeriod;
         private readonly IStudentAttendanceDetailService _studentAttendanceDetailService;
+        private readonly IStudentAtRiskService _studentAtRiskService;
         private readonly IStudentCourseTranscriptService _studentCourseTranscriptService;
         public StudentController(IStudentHighestAbsenceCourseCountService studentHighestAbsenceCourseCountService,
             IStudentAbsencesByCourseService studentAbsencesByCourseService,
             IStudentAbsencesLocationService studentAbsencesLocationService,
             IStudentAbsencesCodesByPeriodService studentAbsencesCodesByPeriod,
             IStudentAttendanceDetailService studentAttendanceDetailService,
+            IStudentAtRiskService studentAtRiskService,
             IStudentCourseTranscriptService studentCourseTranscriptService
             )
         {
@@ -39,6 +42,7 @@ namespace SMCISD.Student360.Api.Controllers
             _studentAbsencesByCourseService = studentAbsencesByCourseService;
             _studentAbsencesLocationService = studentAbsencesLocationService;
             _studentAbsencesCodesByPeriod = studentAbsencesCodesByPeriod;
+            _studentAtRiskService = studentAtRiskService;
             _studentAttendanceDetailService = studentAttendanceDetailService;
             _studentCourseTranscriptService = studentCourseTranscriptService;
         }
@@ -71,6 +75,12 @@ namespace SMCISD.Student360.Api.Controllers
         public async Task<ActionResult<GeneralStudentDnaDataModel>> GetStudentAbsencesCodesByPeriod(int studentUsi)
         {
             return await _studentAbsencesCodesByPeriod.Get(studentUsi);
+        }
+
+        [HttpGet("atRisk/{studentUsi}")]
+        public async Task<ActionResult<StudentAtRiskModel>> GetStudentAtRisk(int studentUsi)
+        {
+            return await _studentAtRiskService.Get(studentUsi);
         }
 
         // Pending Move student exrta hour calls to another controller.

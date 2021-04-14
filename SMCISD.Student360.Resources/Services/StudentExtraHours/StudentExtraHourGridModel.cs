@@ -4,6 +4,8 @@ namespace SMCISD.Student360.Resources.Services.StudentExtraHours
 {
     public class StudentExtraHourGridModel
     {
+        public int StudentExtraHoursId { get; set; }
+        public int Version { get; set; }
         public string StudentUniqueId { get; set; }
         public string GradeLevel { get; set; }
         public string FirstName { get; set; }
@@ -17,7 +19,7 @@ namespace SMCISD.Student360.Resources.Services.StudentExtraHours
         public int StudentUsi { get; set; }
         public int SchoolId { get; set; }
         public int? LocalEducationAgencyId { get; set; }
-        public short? SchoolYear { get; set; }
+        public short SchoolYear { get; set; }
         public string UserFirstName { get; set; }
         public string UserLastSurname { get; set; }
         public string Comments { get; set; }

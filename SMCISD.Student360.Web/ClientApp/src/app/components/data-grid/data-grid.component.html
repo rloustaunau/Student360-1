@@ -1,22 +1,8 @@
 <h1 *ngIf="title">{{title}} <span>{{subtitle}}</span></h1>
-<div class="form-inline justify-content-between align-items-center mb-2">
-  <div class="d-flex">
-    <label *ngIf="showPagination" class="my-1 mr-2" for="inlineFormCustomSelectPref">Page Size</label>
-    <select *ngIf="showPagination" [(ngModel)]="grid.pageSize" (ngModelChange)="updatePageSize()" class="custom-select my-1 mr-sm-2">
-      <option [value]="25">25</option>
-      <option [value]="30">30</option>
-      <option [value]="40">40</option>
-      <option [value]="50">50</option>
-    </select>
-  </div>
-  <div class="d-flex align-items-center" *ngIf="showSearch || showImportExport">
-    <button *ngIf="showImportExport" data-toggle="tooltip" data-placement="right"
-        title="Download Grid Data for Makeup Hours"  class="btn-outline-primary btn-round-small d-flex align-items-center justify-content-center w-35px h-35px f-s-16 mr-2" type="button" (click)="exportCsv()"><i class="fa fa-download"></i></button>
-    <button *ngIf="showImportExport" data-toggle="tooltip" data-placement="right"
-        title="Upload Student Makeup Hours" type="button" (click)="uploader.click()" class="btn-outline-primary upload btn-round-small d-flex align-items-center justify-content-center w-35px h-35px f-s-16 mr-2"><input #uploader type="file" (change)="importCsv($event.target.files)"><i class="fa fa-upload"></i></button>
-    <input *ngIf="showSearch" #searchInput class="form-control text-right" placeholder="Search" [(ngModel)]="grid.searchTerm" />
-  </div>
-</div>
+<app-grid-header [grid]="grid" [showPagination]="showPagination" [showImportExport]="showImportExport"
+  [selectedColumns]="selectedColumns" [serviceName]="serviceName" [methodName]="methodName" [showSearch]="showSearch"
+  [filters]="filters" (pageSizeChanged)="updatePageSize($event)" (searchTermChanged)="searchChanged($event)">
+</app-grid-header>
 <div class="position-relative card mb-1">
   <div class="card-body">
     <app-loader [loading]="loading"></app-loader>
@@ -24,7 +10,8 @@
       <table class="table grid-table">
         <thead>
           <tr>
-            <th scope="col" style="cursor: pointer;" *ngFor="let header of grid.headers; let i = index;" (click)="sortGrid(header)">
+            <th scope="col" style="cursor: pointer;" *ngFor="let header of grid.headers; let i = index;"
+              (click)="sortGrid(header)">
               {{getStringReplace(i,header.name)}}
               <i class="fa fa-sort-up" style="float: right;" *ngIf="!header.order && header.order !== undefined"></i>
               <i class="fa fa-sort-down" style="float: right;" *ngIf="header.order && header.order !== undefined"></i>
@@ -40,7 +27,8 @@
               <td class="grid-drilldown" [colSpan]="grid.headers.length">
                 <ng-container [ngSwitch]="drilldownComponent">
                   <app-student-profile *ngSwitchCase="'app-student-profile'" [object]="item"></app-student-profile>
-                  <app-student-hour-history *ngSwitchCase="'app-student-hour-history'" [object]="item"></app-student-hour-history>
+                  <app-student-hour-history *ngSwitchCase="'app-student-hour-history'" [object]="item">
+                  </app-student-hour-history>
                 </ng-container>
               </td>
             </tr>
@@ -51,17 +39,6 @@
     </div>
   </div>
 </div>
-<div class="grid-pagination" *ngIf="showPagination">
-  <a class="pagination-meta" *ngIf="grid.filteredCount == grid.totalCount">Showing {{(grid.pageSize * (grid.pageNumber - 1)) + 1}} to {{grid.pageSize + (grid.pageSize * (grid.pageNumber - 1))}} of {{grid.totalCount}} entries</a>
-  <a class="pagination-meta" *ngIf="grid.filteredCount != grid.totalCount">Showing {{(grid.pageSize * (grid.pageNumber - 1)) + 1}} to {{grid.pageSize + (grid.pageSize * (grid.pageNumber - 1))}} of {{grid.filteredCount}} entries (filtered from {{grid.totalCount}} total entries)</a>
-  <nav>
-    <ul class="pagination pagination-nav">
-      <li class="page-item"><a class="page-link" (click)="pageSelected(calculateFirstPage() - 1)" *ngIf="calculateFirstPage() != 1">Previous</a></li>
-      <li class="page-item"><a class="page-link" [ngClass]="{'selected-page': grid.pageNumber == calculateFirstPage()}" (click)="pageSelected(calculateFirstPage())" *ngIf="calculateFirstPage() <= grid.maxPageNumber">{{calculateFirstPage()}}</a></li>
-      <li class="page-item"><a class="page-link" [ngClass]="{'selected-page': grid.pageNumber == calculateSecondPage()}" (click)="pageSelected(calculateSecondPage())" *ngIf="calculateSecondPage() <= grid.maxPageNumber">{{calculateSecondPage()}}</a></li>
-      <li class="page-item"><a class="page-link" [ngClass]="{'selected-page': grid.pageNumber == calculateThirdPage()}" (click)="pageSelected(calculateThirdPage())" *ngIf="calculateThirdPage() <= grid.maxPageNumber">{{calculateThirdPage()}}</a></li>
-      <li class="page-item"><a class="page-link" (click)="pageSelected((calculateThirdPage() + 1))" *ngIf="calculateThirdPage() <= grid.maxPageNumber">Next</a></li>
-    </ul>
-  </nav>
-</div>
-
+<app-grid-footer [pageNumber]="grid.pageNumber" [pageSize]="grid.pageSize" [filteredCount]="grid.filteredCount"
+  [totalCount]="grid.totalCount" [maxPageNumber]="grid.maxPageNumber" [showPagination]="showPagination"
+  (pageChanged)="pageChanged($event)"></app-grid-footer>

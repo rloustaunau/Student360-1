@@ -13,7 +13,6 @@ namespace SMCISD.Student360.Persistence.Queries
     }
 
     public class AdadistrictQueries : IAdadistrictQueries
-
     {
         private readonly Student360Context _db;
 

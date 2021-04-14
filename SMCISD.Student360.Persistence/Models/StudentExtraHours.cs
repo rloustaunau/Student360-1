@@ -9,6 +9,10 @@ namespace SMCISD.Student360.Persistence.Models
     public partial class StudentExtraHours
     {
         [Key]
+        public int StudentExtraHoursId { get; set; }
+        [Key]
+        public int Version { get; set; }
+        [Required]
         [StringLength(32)]
         public string StudentUniqueId { get; set; }
         [Required]
@@ -20,20 +24,17 @@ namespace SMCISD.Student360.Persistence.Models
         [Required]
         [StringLength(75)]
         public string LastSurname { get; set; }
-        [Key]
         public DateTime Date { get; set; }
-        public int Hours { get; set; }
-        public short? SchoolYear { get; set; }
-        [Key]
+        public int? Hours { get; set; }
+        public short SchoolYear { get; set; }
+        [Required]
         [StringLength(50)]
         public string UserCreatedUniqueId { get; set; }
-        [Key]
-        [StringLength(100)]
-        public string UserRole { get; set; }
         [Required]
         [StringLength(100)]
+        public string UserRole { get; set; }
+        [StringLength(256)]
         public string Comments { get; set; }
-        [Key]
         public int ReasonId { get; set; }
         [Required]
         [StringLength(75)]

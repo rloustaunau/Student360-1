@@ -72,12 +72,14 @@ main {
 }
 .main-view-container{
     flex-wrap: nowrap;
+    height: 100%;
 }
 
 .container {
   max-width: 98%;
   padding: 0;
   margin-right: 2%;
+  height: 100%;
 }
 
 h1 {
@@ -1537,7 +1539,7 @@ mark {
 .border-right-1 {border-right: 1px solid rgba(120, 130, 140, 0.13);} .border-bottom-1 {border-bottom: 1px solid rgba(120, 130, 140, 0.13);}
 .w-220 { min-width: 220px } .w-250 { min-width: 250px }
 .inline { display:inline } .inline-block { display:inline-block } .block { display: block!important; }
-
+.max-height-50vh{ max-height: 50vh !important;}
 
 
 .custom-slider .ng5-slider .ng5-slider-bar {
@@ -1710,4 +1712,11 @@ mark {
 
 .grid-table tbody tr:nth-child(2n) > td {
     background-color: #eee;
+}
+
+.grid-table-container {
+  height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 70vh;
 }

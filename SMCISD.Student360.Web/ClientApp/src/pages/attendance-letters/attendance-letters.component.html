@@ -1,0 +1,139 @@
+<app-grid-header [grid]="grid" [showPagination]="false" [showImportExport]="false" [selectedColumns]="[]"
+  serviceName="studentExtraHour" methodName="getStudentExtraHourGrid" [showSearch]="true" [filters]="filters"
+  (pageSizeChanged)="updatePageSize($event)" (searchTermChanged)="searchChanged($event)"></app-grid-header>
+
+
+<div class="row m-b-30">
+  <div class="col-12 col-xs-12 col-md-3 col-lg-3 cursor-pointer" *ngFor="let type of grid.metadata"
+    (click)="typeChanged(type)">
+    <div class="card m-0 h-100pc">
+      <div class="card-body d-flex align-items-center justify-content-center flex-column"
+        [ngClass]="{ 'indicator-selected' : type.typeId == typeFilter.value}">
+        <span class="f-s-20">{{type.count}}</span>
+        <span class="f-s-18 f-w-800">{{type.type}}</span>
+        <span>Letter Age: Max {{type.maxLetterAge}} / Avg {{type.averageLetterAge}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-xs-12 col-md-9 col-lg-9" *ngIf="!grid.metadata || grid.metadata.length == 0"></div>
+  <div class="col-12 col-xs-12 col-md-3 col-lg-3">
+    <div class="card m-0 h-100pc">
+      <div class="card-body">
+        <div class="form-group">
+          <label>Run As Of Date</label>
+          <input class="form-control" type="date" [max]="maxDate" [(ngModel)]="currentDate"
+            (ngModelChange)="dateChanged()">
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select class="form-control" [(ngModel)]="statusFilter.value" (ngModelChange)="statusChanged()"
+            placeholder="Status">
+            <option *ngFor="let status of statuses" [value]="status.attendanceLetterStatusId">{{ status.codeValue}}
+            </option>
+
+          </select>
+        </div>
+        <div class="row" *ngIf="visible">
+          <div class="col-6">
+            <button type="button" [disabled]="checkSelected()" class="btn btn-primary w-100"
+              (click)="confirmPrint()">Print</button>
+          </div>
+          <div class="col-6">
+            <button type="button" [disabled]="checkSelected() || statusFilter.value != 4" class="btn btn-primary w-100"
+              (click)="confirmArchive()">Archive</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="card" *ngIf="filters">
+  <div class="card-body">
+    <app-loader [loading]="loading"></app-loader>
+    <div class="grid-table-container max-height-50vh">
+      <table class="table grid-table">
+        <thead>
+          <tr>
+            <th>
+              <input type="checkbox" class="form-control" [(ngModel)]="selectedAll" [checked]="selectedAll"
+                     (ngModelChange)="changeAll()" style="min-width: 7px">
+            </th>
+            <th>
+              LetterType
+            </th>
+            <th>
+              Student ID
+            </th>
+            <th>
+              Student Name
+            </th>
+            <th>
+              First Absence
+            </th>
+            <th>
+              Qualifying Absence
+            </th>
+            <th *ngIf="statusFilter.value == 4">
+              Letter Age
+            </th>
+            <th *ngIf="statusFilter.value != 4">
+              Date/Time
+            </th>
+            <th>
+              Actions
+            </th>
+            <th>
+              Details
+            </th>
+            <th>
+              Comments
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of grid.data">
+            <td>
+              <input type="checkbox" class="form-control" [(ngModel)]="item.selected" [checked]="item.selected" style="max-width: 10px">
+            </td>
+            <td>
+              {{item.type}}
+            </td>
+            <td>
+              {{item.studentUniqueId}}
+            </td>
+            <td>
+              {{item.lastSurname}}, {{item.firstName}}
+            </td>
+            <td>
+              {{item.firstAbsence | date: 'dd-MMM-yyyy'}}
+            </td>
+            <td>
+              {{item.lastAbsence | date: 'dd-MMM-yyyy'}}
+            </td>
+            <td *ngIf="statusFilter.value == 4">
+              {{getLetterAge(item.lastAbsence)}}
+            </td>
+            <td *ngIf="statusFilter.value != 4">
+              {{item.resolutionDate | date: 'dd-MMM-yyyy'}}
+            </td>
+            <td class="text-center">
+              <button type="button" (click)="openActionsModal(item)" class="btn btn-primary p-0 w-30px h-30px mr-2" data-toggle="tooltip" data-placement="right" title="Actions">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+            <td class="text-center">
+              <button type="button" (click)="openStudentModal(item.studentUsi)" class="btn btn-primary p-0 w-30px h-30px mr-2" data-toggle="tooltip" data-placement="right" title="Actions">
+                <i class="fa fa-eye"></i>
+              </button>
+            </td>
+            <td>
+              <textarea rows="1" class="form-control" type="text" [(ngModel)]="item.comments"></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!grid.data || grid.data.length == 0" class="grid-no-data text-center">No Data</div>
+    </div>
+  </div>
+</div>

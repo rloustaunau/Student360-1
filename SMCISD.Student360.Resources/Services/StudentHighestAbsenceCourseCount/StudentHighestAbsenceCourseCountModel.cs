@@ -12,5 +12,6 @@
         public int? HighestCourseCount { get; set; }
         public int SchoolId { get; set; }
         public string StudentUniqueId { get; set; }
+        public string GradeDescription { get; set; }
     }
 }

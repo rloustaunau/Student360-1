@@ -5,9 +5,14 @@ using System.Collections.Generic;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using SMCISD.Student360.Persistence.Models;
+
 namespace SMCISD.Student360.Persistence.Queries
 {
-    public interface ISchoolsQueries : IGridFilter { }
+    public interface ISchoolsQueries : IGridFilter {
+        Task<EducationOrganizationInformation> GetSchoolInfo(int edOrgId);
+    }
 
     public class SchoolsQueries : ISchoolsQueries
     {
@@ -29,5 +34,13 @@ namespace SMCISD.Student360.Persistence.Queries
                 ChildOptions = x.Select(g => new { Id = g.GradeLevel, Value = g.GradeLevel }) // For GradeLevel Filter
             });
         }
+
+        public async Task<EducationOrganizationInformation> GetSchoolInfo(int edOrgId)
+        {
+            return await _db.EducationOrganizationInformation.FirstOrDefaultAsync(x => x.EducationOrganizationId == edOrgId);
+        }
+
+
+
     }
 }

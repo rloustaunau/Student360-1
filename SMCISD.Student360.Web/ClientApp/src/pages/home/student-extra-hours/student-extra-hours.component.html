@@ -1,11 +1,62 @@
-<app-data-grid *ngIf="filters"
-               serviceName="studentExtraHour"
-               methodName="getStudentExtraHourGrid"
-               [filters]="filters"
-               [showImportExport]="true"
-               drilldownComponent="app-student-hour-history"
-               [selectedColumns]="['StudentUniqueId', 'FirstName', 'LastSurname', 'GradeLevel', 'SchoolYear', 'SchoolId', 'StudentUsi', 'LocalEducationAgencyId', 'TotalHours']"
-               [hiddenColumns]="['studentUsi', 'schoolId', 'localEducationAgencyId']"
-               [renameHeaders]="[{index: 0, name: 'Student ID'},{index: 2, name: 'Last Name'},{index: 3, name: 'Grade'}]"
-               [defaultSearch]="studentUniqueId">
-</app-data-grid>
+<app-grid-header [grid]="grid" [showPagination]="true" [showImportExport]="true" [selectedColumns]="[]"
+  serviceName="studentExtraHour" methodName="getStudentExtraHourGrid" [showSearch]="true" [filters]="filters"
+  (pageSizeChanged)="updatePageSize($event)" (searchTermChanged)="searchChanged($event)"></app-grid-header>
+<div class="card" *ngIf="filters">
+  <div class="card-body">
+    <app-loader [loading]="loading"></app-loader>
+    <div class="grid-table-container">
+      <table class="table grid-table">
+        <thead>
+          <tr>
+            <th>
+              Student ID
+            </th>
+            <th>
+              First Name
+            </th>
+            <th>
+              Last Name
+            </th>
+            <th>
+              Grade Level
+            </th>
+            <th>
+              Total Hours
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of grid.data">
+            <tr (click)="item.showDrilldown = !item.showDrilldown;">
+              <td>
+                {{item.studentUniqueId}}
+              </td>
+              <td>
+                {{item.firstName}}
+              </td>
+              <td>
+                {{item.lastSurname}}
+              </td>
+              <td>
+                {{item.gradeLevel}}
+              </td>
+              <td>
+                {{item.totalHours}}
+              </td>
+            </tr>
+            <tr class="no-pointer" *ngIf="item.showDrilldown">
+              <td class="grid-drilldown" [colSpan]="5">
+                <app-student-hour-current [object]="item" (updateSum)="processChildUpdate(item,$event)">
+                </app-student-hour-current>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <div *ngIf="!grid.data || grid.data.length == 0" class="grid-no-data text-center">No Data</div>
+    </div>
+  </div>
+</div>
+<app-grid-footer [pageNumber]="grid.pageNumber" [pageSize]="grid.pageSize" [filteredCount]="grid.filteredCount"
+  [totalCount]="grid.totalCount" [maxPageNumber]="grid.maxPageNumber" [showPagination]="true"
+  (pageChanged)="pageChanged($event)"></app-grid-footer>

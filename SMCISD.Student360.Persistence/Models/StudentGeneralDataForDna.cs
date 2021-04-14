@@ -28,5 +28,6 @@ namespace SMCISD.Student360.Persistence.Models
         public string PostalCode { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal? Gpa { get; set; }
+        public string Sex { get; set; }
     }
 }

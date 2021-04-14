@@ -27,7 +27,7 @@ namespace SMCISD.Student360.Persistence.Queries
             var query = _db.StudentHighestAbsenceCourseCount;
             var securedQuery = _auth.ApplySecurity(query, query, currentUser);
             var gridMetadata = request.ProcessMetadata(new StudentHighestAbsenceCourseCount());
-
+            request.AllData = true;
             return await securedQuery.ExecuteGridQuery(gridMetadata,request.AllData);
         }
     }

@@ -31,6 +31,7 @@ namespace SMCISD.Student360.Resources.Services.Reasons
               Description = model.Description,
               CreateDate = model.CreateDate,
               Value = model.Value,
+              HasHours = model.HasHours,
               ReasonId = model.ReasonId
             };
         }
@@ -42,6 +43,7 @@ namespace SMCISD.Student360.Resources.Services.Reasons
                 Description = entity.Description,
                 CreateDate = entity.CreateDate,
                 Value = entity.Value,
+                HasHours = entity.HasHours,
                 ReasonId = entity.ReasonId
             };
         }

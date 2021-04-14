@@ -22,7 +22,7 @@ namespace SMCISD.Student360.Persistence.Models
         [StringLength(128)]
         public string ElectronicMailAddress { get; set; }
         [Required]
-        [StringLength(7)]
+        [StringLength(5)]
         public string PersonType { get; set; }
         [Required]
         [StringLength(50)]
@@ -31,6 +31,6 @@ namespace SMCISD.Student360.Persistence.Models
         public int? LocalEducationAgencyId { get; set; }
         [StringLength(50)]
         public string AccessLevel { get; set; }
-        public int? LevelId { get; set; }
+        public string LevelId { get; set; }
     }
 }

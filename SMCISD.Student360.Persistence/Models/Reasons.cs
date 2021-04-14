@@ -17,6 +17,7 @@ namespace SMCISD.Student360.Persistence.Models
         public string Description { get; set; }
         [Required]
         public string Value { get; set; }
+        public bool HasHours { get; set; }
         [Key]
         public int ReasonId { get; set; }
         public DateTime CreateDate { get; set; }

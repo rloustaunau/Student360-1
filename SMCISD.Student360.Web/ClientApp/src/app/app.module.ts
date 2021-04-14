@@ -7,7 +7,7 @@ import { NgbModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/n
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from "angularx-social-login";
 import { JwtInterceptor } from './_infrastructure/jwt.interceptor';
 import { AppRoutingModule } from './app.routing';
-import { DataGridComponent } from './components/data-grid/data-grid.component';
+import { DataGridComponent, GridHeader } from './components/data-grid/data-grid.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ChartsModule } from 'ng2-charts';
@@ -34,7 +34,6 @@ import { FilterRangeComponent } from './components/filter-range/filter-range.com
 import { AttendanceModalComponent } from './components/modals/attendance-modal/attendance-modal.component';
 import { StudentExtraHoursComponent } from '../pages/home/student-extra-hours/student-extra-hours.component';
 import { MessageModalComponent } from './components/modals/message-modal/message-modal.component';
-import { StudentHourHistoryComponent } from './components/student-hour-history/student-hour-history.component';
 import { AttendanceDetailModalComponent } from './components/modals/attendance-detail-modal/attendance-detail-modal.component';
 import { DatePipe } from '@angular/common';
 import { StudentCourseTranscriptComponent } from './components/student-course-transcript/student-course-transcript.component';
@@ -53,6 +52,16 @@ import '@boldreports/javascript-reporting-controls/Scripts/data-visualization/ej
 import '@boldreports/javascript-reporting-controls/Scripts/data-visualization/ej.map.min';
 import { FilterAutocompleteComponent } from './components/filter-autocomplete/filter-autocomplete.component';
 import { AddStudentExtraHoursModalComponent } from './components/modals/add-student-extra-hour/add-student-extra-hours-modal.component';
+import { GridHeaderComponent } from './components/data-grid/grid-header/grid-header.component';
+import { GridFooterComponent } from './components/data-grid/grid-pagination/grid-footer.component';
+import { StudentHourCurrentComponent } from './components/student-hour-current/student-hour-current.component';
+import { StudentExtraHourHistoryComponent } from './components/modals/student-extra-hour-history/student-extra-hour-history.component';
+import { MessageResultModalComponent } from './components/modals/message-result-modal/message-result-modal.component';
+import { AttendanceLettersComponent } from 'src/pages/attendance-letters/attendance-letters.component';
+import { StudentAtRiskModalComponent } from './components/modals/student-risk-modal/student-risk-modal.component';
+import { SecurityLevelComponent } from '../pages/securityLevel/security-level.component';
+import { StaffAccessLevel } from './services/api/current-user.service';
+import { AddStaffAccessLevelModalComponent } from './components/modals/add-staff-access-level/add-staff-access-level-modal.component';
 
 let config = new AuthServiceConfig([
   {
@@ -91,14 +100,23 @@ export function provideConfig() {
     AttendanceModalComponent,
     MessageModalComponent,
     StudentExtraHoursComponent,
-    StudentHourHistoryComponent,
+    StudentHourCurrentComponent,
+    StudentExtraHourHistoryComponent,
     AttendanceDetailModalComponent,
     StudentCourseTranscriptComponent,
     BoldReportViewerComponent,
     FilterAutocompleteComponent,
-    AddStudentExtraHoursModalComponent
+    AddStudentExtraHoursModalComponent,
+    GridHeaderComponent,
+    GridFooterComponent,
+    MessageResultModalComponent,
+    AttendanceLettersComponent,
+    StudentAtRiskModalComponent,
+    SecurityLevelComponent,
+    AddStaffAccessLevelModalComponent
   ],
-  entryComponents: [AttendanceModalComponent, MessageModalComponent, AttendanceDetailModalComponent, AddStudentExtraHoursModalComponent],
+  entryComponents: [AttendanceModalComponent, MessageModalComponent, AttendanceDetailModalComponent, AddStudentExtraHoursModalComponent,
+    StudentExtraHourHistoryComponent, MessageResultModalComponent, StudentHourCurrentComponent, StudentAtRiskModalComponent, AddStaffAccessLevelModalComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BoldReportViewerModule,

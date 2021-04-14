@@ -10,7 +10,7 @@ import { ApiService } from '../../../app/services/api/api.service';
 })
 
 export class LineChartExampleComponent {
-  data : DistrictDailyAttendanceRate[];
+  data: DistrictDailyAttendanceRate[];
   chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -24,7 +24,7 @@ export class LineChartExampleComponent {
         display: true,
         ticks: {
           max: 8250,
-          min: 6250,
+          min: 5250,
           autoSkip: false
         },
         gridLines: {
@@ -48,7 +48,7 @@ export class LineChartExampleComponent {
     }
   };
 
-  chartData = [{data: []}];
+  chartData = [{ data: [] }];
 
   chartLabels = [];
 
@@ -67,7 +67,7 @@ export class LineChartExampleComponent {
     this.chartData = [];
     var date = moment("20200826");
     var dataObject = {
-      data: this.data.map(x => { return { t: moment(x.date).format('L'), y: Number(x.membership.replace(',','')) } }),
+      data: this.data.map(x => { return { t: moment(x.date).format('L'), y: Number(x.membership.replace(',', '')) } }),
       label: 'Membership',
       backgroundColor: 'transparent',
       pointBackgroundColor: 'rgba(110,211,207,1)',

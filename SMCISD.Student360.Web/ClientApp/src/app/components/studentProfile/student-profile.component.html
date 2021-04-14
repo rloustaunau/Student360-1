@@ -4,13 +4,15 @@
     <div class="card student-profile-card h-100 mb-0">
       <div class="card-header">
         <div class="text-right">
-          <span *ngIf="object.ar" class="badge danger mr-2">AR</span>
-          <span *ngIf="object.ell" class="badge danger mr-2">ELL</span>
-          <span *ngIf="object.section504" class="badge danger mr-2">504</span>
+          <span *ngIf="object.ar" class="badge danger mr-2" (mouseenter)="openStudentAtRiskModal(object.studentUsi)">AR</span>
+          <span *ngIf="object.ar==false && (object.section504 || object.ell || object.ssi || object.isHomeless)" class="badge warning mr-2" (click)="openStudentAtRiskModal(object.studentUsi)">AR</span>
+          <!-- <span *ngIf="object.ar" class="badge danger mr-2">AR</span>
+  <span *ngIf="object.ell" class="badge danger mr-2">ELL</span>
+  <span *ngIf="object.section504" class="badge danger mr-2">504</span>-->
           <span *ngIf="object.ecoDis  && userIsAdmin" class="badge danger mr-2">EcoDis</span>
-          <span *ngIf="object.ssi" class="badge danger mr-2">SSI</span>
+          <!--<span *ngIf="object.ssi" class="badge danger mr-2">SSI</span>-->
           <span *ngIf="object.sped" class="badge danger mr-2">SPED</span>
-          <span *ngIf="object.isHomeless && userIsAdmin" class="badge danger mr-2">Homeless</span>
+          <!--<span *ngIf="object.isHomeless && userIsAdmin" class="badge danger mr-2">Homeless</span>-->
         </div>
       </div>
       <div class="card-body mt-0 pt-0">
@@ -19,7 +21,6 @@
             <img class="img-avatar" [src]="imageUrl" />
           </div>
           <h2 class="mt-4 mb-1">{{object.firstName + ' ' + object.lastSurname}}</h2>
-          <h4 class="link-text cursor-pointer" (click)="openStudentModal(object.studentUsi)">Attendance</h4>
         </div>
         <div class="row mt-4">
           <div class="col-12 pt-2 pb-2">
@@ -30,7 +31,7 @@
           </div>
           <div class="col-12 pt-2 pb-2">
             <span>
-              <i class="fa fa-calendar mr-2"></i> <span class="f-w-600">GPA: </span>
+              <i class="fa fa-graduation-cap mr-2"></i> <span class="f-w-600">GPA: </span>
               {{object.gpa | number : '1.2-2'}}
             </span>
           </div>
@@ -40,22 +41,24 @@
               {{object.totalInstructionalDays}}
             </span>
           </div>
-          <div class="col-12 pt-2 pb-2" (click)="goToStudentExtraHoursCrud()">
-            <span>
-              <i class="fa fa-calendar mr-2"></i> <span class="f-w-600 link-text cursor-pointer">
-                Accrued Make Up
-                Hours:
+          <div class="d-flex align-items-center p-l-15">
+            <i class="fa fa-users mr-2"></i>
+            <div class="d-flex flex-column">
+              <span class="f-w-600 link-text cursor-pointer" (click)="openAttendanceSummaryModal(object.studentUsi)">
+                Attendance By Period
               </span>
-              {{studentExtraHours}}
-            </span>
+              <span class="f-w-600 link-text cursor-pointer" (click)="openStudentModal(object.studentUsi)">
+                Attendance Detail
+              </span>
+              <span>
+                <span class="f-w-600 link-text cursor-pointer" (click)="goToStudentExtraHoursCrud()">
+                  Attendance Actions:
+                </span>{{studentExtraHours}} ({{studentExtraTotalHours}} Hrs)
+              </span>
+             
+            </div>
           </div>
-          <div class="col-12 pt-2 pb-2" (click)="openAttendanceSummaryModal(object.studentUsi)">
-            <span>
-              <i class="fa fa-calendar mr-2"></i> <span class="f-w-600 link-text cursor-pointer">
-              Attendance Summary
-            </span>
-            </span>
-          </div>
+           
         </div>
       </div>
     </div>

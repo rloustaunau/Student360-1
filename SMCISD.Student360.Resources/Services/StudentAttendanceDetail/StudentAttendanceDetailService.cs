@@ -31,7 +31,8 @@ namespace SMCISD.Student360.Resources.Services.StudentAttendanceDetail
                 LocalEducationAgencyId = model.LocalEducationAgencyId,
                 StudentUsi = model.StudentUsi,
                 Date = model.Date,
-                Period = model.Period
+                Period = model.Period,
+                Local=model.Local
             };
         }
 
@@ -46,7 +47,9 @@ namespace SMCISD.Student360.Resources.Services.StudentAttendanceDetail
                 LocalEducationAgencyId = entity.LocalEducationAgencyId,
                 StudentUsi = entity.StudentUsi,
                 Date = entity.Date,
-                Period = entity.Period
+                Period = entity.Period,
+                Description=entity.Description,
+                Local = entity.Local
             };
         }
     }

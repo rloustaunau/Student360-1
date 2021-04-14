@@ -40,17 +40,17 @@ namespace SMCISD.Student360.Api.Controllers
             return await _studentExtraHoursService.ImportStudentExtraHours(studentExtraHours, User);
         }
 
-        [HttpPost()]
-        public async Task<ActionResult<GridResponse>> GetStudentExtraHours([FromBody]GridRequest request)
-        {
-            return await _studentExtraHoursService.GetStudentExtraHours(request, User);
-        }
-
-
         [HttpPost("grid")]
         public async Task<ActionResult<GridResponse>> GetStudentExtraHoursGrid([FromBody]GridRequest request)
         {
             return await _studentExtraHoursService.GetGridData(request, User);
+        }
+
+
+        [HttpPost("current")]
+        public async Task<ActionResult<GridResponse>> GetCurrentStudentExtraHours([FromBody] GridRequest request)
+        {
+            return await _studentExtraHoursService.GetCurrentStudentExtraHours(request, User);
         }
 
         [HttpPost("history")]
@@ -77,6 +77,16 @@ namespace SMCISD.Student360.Api.Controllers
                 return Forbid();
 
             return await _studentExtraHoursService.UpdateStudentExtraHours(model, User);
+        }
+
+        [NoAuthFilter]
+        [HttpPut("bulk")]
+        public async Task<ActionResult<List<StudentExtraHoursModel>>> UpdateBulkStudentExtraHours([FromBody] List<StudentExtraHourGridModel> model)
+        {
+            if (Int32.Parse(User.FindFirst(x => x.Type.Contains("level_id")).Value) > 3)
+                return Forbid();
+
+            return await _studentExtraHoursService.UpdateBulkStudentExtraHours(model, User);
         }
     }
 }

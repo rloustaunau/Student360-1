@@ -22,7 +22,8 @@ namespace SMCISD.Student360.Persistence.Queries
         }
         public async Task<List<Report>> Get(int accessLevel)
         {
-            return _db.Report.Where(x => x.LevelId == accessLevel).ToList();
+            // return _db.Report.Where(x => x.LevelId == accessLevel).ToList();
+            return _db.Report.ToList();
         }
     }
 }

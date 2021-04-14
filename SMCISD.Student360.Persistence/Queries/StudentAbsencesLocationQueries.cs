@@ -27,7 +27,7 @@ namespace SMCISD.Student360.Persistence.Queries
         public async Task<GridResponse> GetGridData(GridRequest request, IPrincipal currentUser)
         {
             var query = _db.StudentAbsencesLocation;
-            var securedQuery = _auth.ApplySecurity(query, query, currentUser);
+            var securedQuery = _auth.ApplySecurity(query, query, currentUser); 
             var gridMetadata = request.ProcessMetadata(new StudentAbsencesLocation());
 
             return await securedQuery.ExecuteGridQuery(gridMetadata, true);

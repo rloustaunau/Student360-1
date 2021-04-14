@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Staff Access Level</h4>
+  <button type="button" class="close outline-none" (click)="activeModal.close(false)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div class="row">
+
+    <div class="col-12">
+      <div class="form-group">
+        <label>Location</label>
+        <select class="form-control" [(ngModel)]="staff.educationOrganizationId">
+          <option *ngFor="let school of schools" [value]="school.schoolId">
+            {{school.nameOfInstitution}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Title</label>
+        <select class="form-control" [(ngModel)]="staff.staffClassificationDescriptorId">
+          <option *ngFor="let level of staffAccessLevel" [value]="level.staffClassificationDescriptorId">
+            {{level.description}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+      <button type="button" class="btn btn-primary" (click)="create()">Save</button>
+    </div>
+  </div>
+</div>

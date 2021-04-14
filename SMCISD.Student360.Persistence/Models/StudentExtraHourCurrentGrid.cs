@@ -7,6 +7,7 @@ namespace SMCISD.Student360.Persistence.Models
 {
     public partial class StudentExtraHourCurrentGrid
     {
+        public int StudentExtraHoursId { get; set; }
         [Required]
         [StringLength(32)]
         public string StudentUniqueId { get; set; }
@@ -21,18 +22,16 @@ namespace SMCISD.Student360.Persistence.Models
         public string LastSurname { get; set; }
         [StringLength(30)]
         public string Date { get; set; }
-        public short? SchoolYear { get; set; }
-        public int Hours { get; set; }
+        public int Version { get; set; }
+        public short SchoolYear { get; set; }
         [Required]
         public string Reason { get; set; }
         public int ReasonId { get; set; }
         [Required]
-        [StringLength(100)]
-        public string Comments { get; set; }
-        [Required]
         [StringLength(50)]
         public string UserCreatedUniqueId { get; set; }
         [Required]
+        [StringLength(100)]
         public string UserRole { get; set; }
         [Required]
         [StringLength(75)]
@@ -40,11 +39,14 @@ namespace SMCISD.Student360.Persistence.Models
         [Required]
         [StringLength(75)]
         public string UserLastSurname { get; set; }
-        public DateTime CreateDate { get; set; }
-        public Guid Id { get; set; }
         [Column("StudentUSI")]
         public int StudentUsi { get; set; }
         public int SchoolId { get; set; }
         public int? LocalEducationAgencyId { get; set; }
+        public Guid Id { get; set; }
+        public int? Hours { get; set; }
+        public DateTime CreateDate { get; set; }
+        [StringLength(256)]
+        public string Comments { get; set; }
     }
 }

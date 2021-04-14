@@ -1,0 +1,73 @@
+<div class="modal-header">
+  <h4 class="modal-title">Student At Risk</h4>
+  <button type="button" class="close outline-none" (click)="activeModal.close('Close click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <app-loader [loading]="loading"></app-loader>
+  <table class="table grid-table">
+    <thead>
+      <tr>
+        <th>At risk indicators list</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="object.ar">
+        <td>At Risk</td>
+      </tr>
+      <tr *ngIf="object.ell">
+        <td>Limited English Proficiency</td>
+      </tr>
+      <tr *ngIf="object.ssi">
+        <td>Ssi</td>
+      </tr>
+      <tr *ngIf="object.isHomeless">
+        <td>Is Homeless</td>
+      </tr>
+      <tr *ngIf="object.prePregnant">
+        <td>Pregnant</td>
+      </tr>
+      <tr *ngIf="object.preParent">
+        <td>Parent</td>
+      </tr>
+      <tr *ngIf="object.aep">
+        <td>Alternative education</td>
+      </tr>
+      <tr *ngIf="object.expelled">
+        <td>Expelled</td>
+      </tr>
+      <tr *ngIf="object.dropout">
+        <td>Dropout</td>
+      </tr>
+      <tr *ngIf="object.lep">
+        <td>LEP</td>
+      </tr>
+      <tr *ngIf="object.fosterCare">
+        <td>Foster Care</td>
+      </tr>
+      <tr *ngIf="object.residentialPlacementFacility">
+        <td>Residential Placement Facility</td>
+      </tr>
+      <tr *ngIf="object.incarcerated">
+        <td>Incarcerated</td>
+      </tr>
+      <tr *ngIf="object.adultEd">
+        <td>Adult Ed</td>
+      </tr>
+      <tr *ngIf="object.prs">
+        <td>Pregancy Related Services</td>
+      </tr>
+      <tr *ngIf="object.notAdvanced">
+        <td>Not Advanced</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer text-center">
+  <div class="row text-center w-100">
+    <p style="margin:0 auto; font-size:0.8rem">The information on this window is highly confidential</p>
+    <p style="margin:0 auto; font-size:0.8rem" class="text-amber w-100">Yellow=There is no At Risk indicator in eSchool, but the At Risk flag is set</p>
+  </div>
+ 
+</div>

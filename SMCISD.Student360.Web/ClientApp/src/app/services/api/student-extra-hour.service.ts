@@ -15,12 +15,13 @@ export class StudentExtraHourService {
   public importStudentExtraHours(studentExtraHours: StudentExtraHours[]): Observable<StudentExtraHours[]> {
     return this.http.post<StudentExtraHours[]>(`${environment.apiUrl}/api/${this.controllerName}/import/`, studentExtraHours);
   }
-  public getStudentExtraHours(request: GridRequest): Observable<Grid> {
-    return this.http.post<Grid>(`${environment.apiUrl}/api/${this.controllerName}`, request);
-  }
 
   public getStudentExtraHourGrid(request: GridRequest): Observable<Grid> {
     return this.http.post<Grid>(`${environment.apiUrl}/api/${this.controllerName}/grid`, request);
+  }
+
+  public GetCurrentStudentExtraHours(request: GridRequest): Observable<Grid> {
+    return this.http.post<Grid>(`${environment.apiUrl}/api/${this.controllerName}/current`, request);
   }
 
   public GetHistoryHoursById(request: GridRequest): Observable<Grid> {
@@ -34,6 +35,9 @@ export class StudentExtraHourService {
   public updateStudentHours(request: StudentExtraHours): Observable<StudentExtraHours> {
     return this.http.put<StudentExtraHours>(`${environment.apiUrl}/api/${this.controllerName}`, request);
   }
+  public updatebulkStudentHours(request: StudentExtraHours[]): Observable<StudentExtraHours[]> {
+    return this.http.put<StudentExtraHours[]>(`${environment.apiUrl}/api/${this.controllerName}/bulk`, request);
+  }
 
   public getReasons(): Observable<Reason[]> {
     return this.http.get<Reason[]>(`${environment.apiUrl}/api/${this.controllerName}/reasons`);
@@ -42,6 +46,8 @@ export class StudentExtraHourService {
 
 
 export class StudentExtraHourGrid {
+  studentExtraHoursId: number;
+  version: number;
   studentUniqueId: string;
   gradeLevel: string;
   firstName: string;
@@ -50,7 +56,7 @@ export class StudentExtraHourGrid {
   hours: number;
   userCreatedUniqueId: string;
   userRole: string;
-  createdDate: Date;
+  createDate: Date;
   studentUsi: number;
   schoolId: number;
   localEducationAgencyId: number;
@@ -62,9 +68,12 @@ export class StudentExtraHourGrid {
   reasonId: number;
   comments: string;
   id: string;
+  edited: boolean;
 }
 
 export class StudentExtraHours {
+  studentExtraHoursId: number;
+  version: number;
   studentUniqueId: string;
   gradeLevel: string;
   firstName: string;
@@ -88,5 +97,6 @@ export class Reason {
   reasonId: number;
   value: string;
   descriptrion: string;
+  hasHours: boolean;
   createdDate: Date;
 }

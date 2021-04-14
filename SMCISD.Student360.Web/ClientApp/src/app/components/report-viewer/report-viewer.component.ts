@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ApiService } from '@app/services/api/api.service';
 
 @Component({
@@ -18,11 +18,9 @@ export class ReportViewerComponent {
   height: number = 150;
   toolbar: string = "true";
 
-  constructor(private apiService: ApiService)
-  {}
+  constructor(private apiService: ApiService) { }
 
-  ngOnInit()
-  {
-     this.reportUrl = this.apiService.reportViewer.getUrl();
+  ngOnInit() {
+    this.reportUrl = this.apiService.reportViewer.getUrl();
   }
 }

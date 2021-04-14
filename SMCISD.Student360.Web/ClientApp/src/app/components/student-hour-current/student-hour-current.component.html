@@ -1,0 +1,89 @@
+<div class="row position-relative">
+  <app-loader [loading]="loading"></app-loader>
+  <div class="col-12">
+    <div class="position-relative card h-100 mb-0">
+      <div class="card-body">
+        <table class="table student-profile-table">
+          <thead>
+            <tr>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Date" width="10%">
+                Qual Date
+              </th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Reason" width="25%">Reason
+              </th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Comments" width="25%">
+                Comments
+              </th>
+              <th *ngIf="!isElementarySchoolStudent" class="text-ellipsis" data-toggle="tooltip" data-placement="right"
+                title="Date" width="10%">Makeup Hours</th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Created By" width="10%">
+                Edited By
+              </th>
+              <th class="text-ellipsis" data-toggle="tooltip" data-placement="right" title="Created Date" width="10%">
+                <div class="d-flex">
+                  <div class="mr-2 d-flex align-items-center"> Edited Date</div>
+                </div>
+              </th>
+              <th width="10%">
+                <div class="d-flex">
+                  <button [disabled]="canAdd()" type="button" class="btn btn-primary p-0 w-30px h-30px mr-2"
+                    (click)="createRecord()" data-toggle="tooltip" data-placement="right" title="Create Record">
+                    <i class="ion-md-add"></i>
+                  </button>
+                  <button [disabled]="!isValidList()" type="button" class="btn btn-primary p-0 w-30px h-30px mr-2"
+                    (click)="updateRecords()" data-toggle="tooltip" data-placement="right" title="Save All">
+                    <i class="ion-md-save"></i>
+                  </button>
+                  <button type="button" class="btn btn-primary p-0 w-30px h-30px" (click)="export()"
+                    data-toggle="tooltip" data-placement="right" title="Export">
+                    <i class="fa fa-download"></i>
+                  </button>
+                </div>
+              </th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list">
+              <td>{{item.date | date: 'MMM/dd/yyyy'}}</td>
+              <td *ngIf="item.reason!='10 Day Letter' && item.reason!='5 Day Letter' && item.reason!='3 Day Letter'">
+                <select class="form-control" *ngIf="isValid(item.userCreatedUniqueId)" [(ngModel)]="item.reasonId"
+                        (ngModelChange)="item.edited = true;">
+                  <option *ngFor="let reason of reasonsCopy" [value]="reason.reasonId">
+                    {{reason.value}}
+                  </option>
+                </select>
+                <div *ngIf="!isValid(item.userCreatedUniqueId)">{{item.reason}}</div>
+              </td>
+              <td *ngIf="item.reason=='10 Day Letter' || item.reason=='5 Day Letter' || item.reason=='3 Day Letter'">
+                {{item.reason}}
+              </td>
+              <td *ngIf="item.reason!='10 Day Letter' && item.reason!='5 Day Letter' && item.reason!='3 Day Letter'">
+                <textarea rows="1" class="form-control" *ngIf="isValid(item.userCreatedUniqueId)" type="text"
+                          [(ngModel)]="item.comments" maxlength="256" (ngModelChange)="item.edited = true;"></textarea>
+                <div *ngIf="!isValid(item.userCreatedUniqueId)">{{item.comments}}</div>
+              </td>
+              <td *ngIf="item.reason=='10 Day Letter' || item.reason=='5 Day Letter' || item.reason=='3 Day Letter'">
+                {{item.comments}}
+              </td>
+              <td *ngIf="!isElementarySchoolStudent">
+                <input class="form-control" *ngIf="isValid(item.userCreatedUniqueId)" type="number"
+                       [(ngModel)]="item.hours" (ngModelChange)="item.edited = true;" />
+                <div *ngIf="!isValid(item.userCreatedUniqueId)">{{item.hours}}</div>
+              </td>
+              <td>{{item.userFirstName + ' ' + item.userLastSurname}}</td>
+              <td>{{item.createDate | date: 'MMM/dd/yyyy'}}</td>
+              <td>
+                <button type="button" class="btn btn-primary p-0 w-30px h-30px"
+                        (click)="openStudentExtraHourHistory(item)" data-toggle="tooltip" data-placement="right"
+                        title="History log">
+                  <i class="ion-md-book"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

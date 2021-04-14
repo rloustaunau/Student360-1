@@ -1,0 +1,93 @@
+﻿<h3 style="margin-top:40px;">San Marcos Consolidated Independent School District</h3>
+<h3>{{SchoolName}}</h3>
+<span class="text-row-center">{{SchoolAddress}} ~ {{SchoolCity}}, {{SchoolState}} {{SchoolPostalCode}} ~ {{SchoolPhoneNumber}}</span>
+<hr>
+<span>{{Today}}</span>
+
+<div style="text-align: right;">
+    <div style="display: inline-block;border: 1px solid; padding:10px;">
+        {{AlertLevel}}
+    </div>
+</div>
+<p>TO THE PARENT/GUARDIAN OF: <br>
+    {{StudentName}}<br>
+    {{StudentAddress}}<br>
+    {{StudentCity}}, {{StudentState}} {{StudentPostalCode}}<br>
+</p>
+<br>
+
+<p>RE: Student Absent from School: {{StudentName}}, {{StudentUniqueId}}</p>
+
+<p>Dear SMCISD Parent or Guardian:</p>
+
+<p class="pdf-p">{{StudentName}} has now {{LetterType}} unexcused days of school/class within the
+    last 6 months of school.
+    If your child is in elementary or middle school, this may couse her to be retained in her curent grade level or not be ready
+    to perform satistactorily next year. If your child is in high school, this may cause her to lose course credit. High school
+    students not meeting credit requirements will be retained in their current grade level for next year if they are unable to make up
+    the classwork and/or attendance hours.
+</p>
+<br>
+<p class="pdf-p">
+   Failure to attend school may result in a court petition for parent/guardian and/or student (12-18 years old).
+</p>
+<br>
+
+<p class="pdf-p">
+</p>
+<br>
+<br>
+
+<p>Sincerely,</p>
+
+<p>{{SchoolPrincipal}}<br>Principal</p>
+<br>
+<br>
+
+<div class="center" style="page-break-after: always;">
+    <table class="pdfTable">
+        <thead>
+            <tr>
+                <th colspan="2">When Do Absences Become a
+                    Problem?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="50px">Severe</td>
+                <td width="500px">
+                    <span class="text-row-center">CHRONIC ABSENCE</span>
+                    <span class="text-row-center">18 or more days or parts of days in a school
+                        year</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="50px">Warning</td>
+                <td width="500px">
+                    <span class="text-row-center">WARNING SIGNS</span>
+                    <span class="text-row-center">10 to 17 days or parts of days in a school
+                        year</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="50px">Satisfactory</td>
+                <td width="500px">
+                    <span class="text-row-center">SATISFACTORY</span>
+                    <span class="text-row-center">9 or fewer days or parts of days in a school
+                        year</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+
+    <p class="footer-text">Texas law requires students to attend school regularly and
+        requires parent to
+        make sure their child attends
+        school regularly (Texas Education Code 25.0915). In addition, parents are subject to prosecution (Texas
+        Education Code 25.093) and students to be referred to truancy court (Texas Family Code 65.003(a)) for
+        non-attendance.</p>
+</div>
+
